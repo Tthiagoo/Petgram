@@ -1,11 +1,9 @@
 import React from "react";
 import { useColorMode, IconButton, IconButtonProps } from "@chakra-ui/core";
 
-interface teste{
-    texto:String,
-}
 
-const ThemeSelector: React.FC<IconButtonProps> = (text:teste) => {
+
+const ThemeSelector: React.FC<IconButtonProps> = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
@@ -17,7 +15,7 @@ const ThemeSelector: React.FC<IconButtonProps> = (text:teste) => {
         icon={colorMode === "light" ? "moon" : "sun"}
         onClick={toggleColorMode}
       />
-      <h1>{text}</h1>
+      
     </>
   );
 };
