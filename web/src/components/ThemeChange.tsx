@@ -1,22 +1,24 @@
 import React from "react";
-import { useColorMode, IconButton, IconButtonProps } from "@chakra-ui/core";
+import { useColorMode, IconButton, IconButtonProps, Box } from "@chakra-ui/core";
 
 
 
 const ThemeSelector: React.FC<IconButtonProps> = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <>
+    <Box display="flex" alignSelf="center" justifySelf="start" marginLeft="20px">
       <IconButton
-        marginTop="10px"
-        marginLeft="10px"
+      display="flex"
+        marginTop="15px"
+        
         aria-label=""
         maxWidth="20px"
         icon={colorMode === "light" ? "moon" : "sun"}
         onClick={toggleColorMode}
+       
       />
       
-    </>
+    </Box>
   );
 };
 
