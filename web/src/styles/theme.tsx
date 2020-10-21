@@ -33,7 +33,8 @@ const customTheme: DefaultTheme = {
       100:'#CADCEF',
       200:'#b2cfe6',
       300:'#8BC3FF',
-      700:'#3f6379'
+      700:'#3f6379',
+      600:'#314f61'
     },
     gray: {
       ...theme.colors.gray,
