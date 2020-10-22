@@ -52,17 +52,16 @@ export default function Login() {
 				<Heading color="white">Faça seu Login</Heading>
 				<Input
 					placeholder="username"
-					size="md"
+					height="60px"
+      		size="md"
 					marginTop="30px"
-					fontSize={20}
-					borderRadius={12}
+			
 				/>
 				<Input
 					placeholder="password"
 					marginTop="25px"
+					height="60px"
 					size="md"
-					fontSize={20}
-					borderRadius={12}
 				/>
 				<Button
 					marginTop="30px"
