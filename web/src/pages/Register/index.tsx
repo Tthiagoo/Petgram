@@ -7,6 +7,8 @@ import {
 	Text,
 	useColorMode,
 	Box,
+	Textarea,
+	Image,
 } from "@chakra-ui/core";
 import ThemeSelector from "../../components/ThemeChange";
 import Input from "../../components/Input";
@@ -32,23 +34,23 @@ export default function Register() {
 			<Grid
 				as="main"
 				height="87%"
-				width="89%"
+				width="90%"
 				templateColumns={["1fr", "1fr 1fr"]}
-				templateRows={["23% 68%", "120px 80% 120px"]}
+				templateRows={["23% 68%", "1fr 90% 1fr"]}
 				templateAreas={["'photo' 'form'", "'. .''photo form' "]}
 				justifyItems="center"
-				borderRadius="25px"
+				borderRadius="15px"
 				marginBottom="auto"
 				backgroundColor={colorMode === "light" ? "blue.200" : "blue.600"}
 			>
-				<Box
-					border="black 1px dashed"
-					width="100px"
-					height="100px"
-					borderRadius={50}
+				<Flex
 					gridArea="photo"
-					marginTop="20px"
-				></Box>
+				
+					width={["auto"]}
+					alignItems="center"
+				>
+					<Image borderRadius={['80px','10px']} size={['100px','100px','300px','380px']}  backgroundColor="white"/>
+				</Flex>
 
 				<Flex
 					gridArea="form"
@@ -56,13 +58,42 @@ export default function Register() {
 					height="100%"
 					flexDirection="column"
 					alignItems="center"
-					justifyContent={["space-between"]}
+					justifyContent={["space-between", "center"]}
 				>
-					<Input width='80%' height="70px"/>
-					<Input width="80%" />
-					<Input width="80%" />
-					<Input width="80%" />
-					<Button>Cadastrar</Button>
+					<Input
+						width="80%"
+						height="10%"
+						marginBottom={["5px", "20px"]}
+						placeholder="Seu Nome"
+					/>
+					<Input
+						width="80%"
+						height="10%"
+						marginBottom={["5x", "30px"]}
+						placeholder="Seu username"
+					/>
+					<Input
+						width="80%"
+						height="10%"
+						marginBottom={["5px", "30px"]}
+						placeholder="Sua senha"
+					/>
+					<Textarea
+						width="80%"
+						height="30%"
+						marginBottom={["", "30px"]}
+						placeholder="Sua biodescrição"
+						fontSize={20}
+					/>
+					<Button
+						width="80%"
+						height={["50px"]}
+						fontSize={20}
+						backgroundColor={colorMode === "light" ? "#0878b9" : "#085b8b"}
+						color="white"
+					>
+						Cadastrar
+					</Button>
 				</Flex>
 			</Grid>
 		</Flex>

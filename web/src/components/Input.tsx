@@ -4,9 +4,9 @@ import { Input as ChakraInput, InputProps as ChakraInputProps } from '@chakra-ui
 const Input: React.FC<ChakraInputProps> = (props) => {
   return (
     <ChakraInput
-      focusBorderColor="blue.700"
+      
       fontSize={20}
-      borderRadius={12}
+      borderRadius={8}
       {...props}
     />
   )
