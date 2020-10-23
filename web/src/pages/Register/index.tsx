@@ -27,7 +27,7 @@ export default function Register() {
 			}
 			flexDirection="column"
 		>
-			<Box alignSelf="start" marginBottom="auto">
+			<Box alignSelf="start" marginBottom="auto" marginTop="10px">
 				<ThemeSelector aria-label="" />
 			</Box>
 

@@ -50,29 +50,21 @@ export default function Login() {
 				boxShadow="10px 15px 28px black"
 			>
 				<Heading color="white">Faça seu Login</Heading>
-				<Input
-					placeholder="username"
-					height="60px"
-      		size="md"
-					marginTop="30px"
-			
-				/>
-				<Input
-					placeholder="password"
-					marginTop="25px"
-					height="60px"
-					size="md"
-				/>
-				<Button
-					marginTop="30px"
-					width="100%"
-					height={20}
-					fontSize={30}
-					backgroundColor={colorMode === "light" ? "#0878b9" : "#075988"}
-					color="white"
-				>
-					Entrar
-				</Button>
+				<Input placeholder="username" height="60px" size="md" marginTop="30px" />
+				<Input placeholder="password" marginTop="25px" height="60px" size="md" />
+
+				<Link to="/main" style={{ width: "100%", display: "flex" }}>
+					<Button
+						marginTop="30px"
+						width="100%"
+						height={20}
+						fontSize={30}
+						backgroundColor={colorMode === "light" ? "#0878b9" : "#075988"}
+						color="white"
+					>
+						Entrar
+					</Button>
+				</Link>
 
 				<Box
 					display="flex"
@@ -82,10 +74,13 @@ export default function Login() {
 					fontWeight="bold"
 					width="100%"
 					color="white"
-					
 				>
-					<Link to="/register" style={{width:"100%", display:'flex'}}>
-						<FaSignInAlt size={25} color="#e9e6e6" style={{ marginRight: "10px", cursor:"pointer"  }} />
+					<Link to="/register" style={{ width: "100%", display: "flex" }}>
+						<FaSignInAlt
+							size={25}
+							color="#e9e6e6"
+							style={{ marginRight: "10px", cursor: "pointer" }}
+						/>
 						Não tenho cadastro
 					</Link>
 				</Box>
