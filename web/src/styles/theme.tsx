@@ -33,6 +33,7 @@ const customTheme: DefaultTheme = {
       100:'#CADCEF',
       200:'#90afc9',
       300:'#b9d2e8',
+      400:'#f3f7fb',
       700:'#3f6379',
       600:'#1c3d50',
       500:'#224c64'

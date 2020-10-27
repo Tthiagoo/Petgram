@@ -16,7 +16,7 @@ export default function Header(){
 			gridArea="logo"
 			width="100%"
 			height="100%"
-			backgroundColor={colorMode === "light" ? "blue.200" : "blue.500"}
+			backgroundColor={colorMode === "light" ? "blue.2c00" : "blue.500"}
 			alignItems="center"
 			justifyContent="space-between"
 		>

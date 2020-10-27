@@ -44,8 +44,10 @@ export default function Main() {
 					alignItems="center"
 					gridArea="feed"
 				>
+					
 					<Post />
 					<Post/>
+
 				</List>
 			</Grid>
 		</Flex>
