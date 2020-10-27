@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/core";
 
 import Input from "../../components/Input";
-import Divider from "../../components/Divider";
+
 
 export default function Login() {
 	const { colorMode } = useColorMode();
