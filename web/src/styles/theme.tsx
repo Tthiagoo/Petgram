@@ -36,7 +36,7 @@ const customTheme: DefaultTheme = {
       400:'#f3f7fb',
       700:'#3f6379',
       600:'#1c3d50',
-      500:'#224c64'
+      500:'#1a3a4c'
     },
     gray: {
       ...theme.colors.gray,
