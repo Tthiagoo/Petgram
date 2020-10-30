@@ -128,11 +128,11 @@ export default function Profile() {
           alignItems="center"
         >
           <Box w={['100%','100%','100%','100%','70%']}>
-            <Heading fontSize={["1.0rem", "1.6rem"]}>
+            <Heading fontSize={["1.0rem", "1.4rem"]}>
               Fulano de Beltrano
             </Heading>
             <Text
-              fontSize={["0.8rem", "1.4rem", "1.4rem"]}
+              fontSize={["0.8rem", "1.4rem", "1.0rem"]}
               paddingX={["0px,0px,15px"]}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
