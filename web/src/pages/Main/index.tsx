@@ -28,7 +28,7 @@ export default function Main() {
 				height="100%"
 				width="100%"
 				templateColumns={["1fr"]}
-				templateRows={["1fr 93%"]}
+				templateRows={["1fr 92%"]}
 				gridTemplateAreas={["'logo' 'feed'"]}
 			>
 				<Header/>

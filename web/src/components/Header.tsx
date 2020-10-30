@@ -19,7 +19,7 @@ export default function Header() {
 			height="100%"
 			backgroundColor={colorMode === "light" ? "blue.200" : "blue.500"}
 			alignItems="center"
-			justifyContent="space-between"
+			justifyContent={['space-between','space-between','space-between','space-between','space-around']}
 		>
 			<Box gridArea="logo" marginLeft="-5px">
 				<ThemeSelector aria-label="" />
@@ -31,13 +31,13 @@ export default function Header() {
 
 			<Box gridArea="logo" marginRight="15px" display="flex" flexDirection="row">
 
-				<Box marginRight="10px" w={["18px", "25px", "30px", "35px", "20px"]}>
+				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
 					<Link to="/profile" style={{ width: "100%", display: "flex" }}>
 						<FaUser size="100%" />
 					</Link>
 				</Box>
 
-				<Box marginRight="10px" w={["22px", "27px", "32px", "35px", "23px"]}>
+				<Box marginRight="15px" w={["22px", "27px", "32px", "35px", "23px"]}>
 					<FaHome size="100%" />
 				</Box>
 
