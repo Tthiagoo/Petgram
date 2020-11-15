@@ -7,7 +7,7 @@ export async function up(knex:Knex){
         table.string('photoPost')
         table.string('description')
         table.integer('likes').defaultTo(0)
-        table.json('comments')
+       
         table.integer('user_id').references('id').inTable('users')
     })
 }

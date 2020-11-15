@@ -8,7 +8,7 @@ export async function up(knex:Knex){
         table.string('password').notNullable()
         table.text('bio')
         table.string('photo')
-        table.specificType('friends','integer ARRAY')
+        
     })
 }
 export async function down(knex:Knex){
