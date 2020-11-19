@@ -1,7 +1,6 @@
 import express from 'express';
 import multer from 'multer'
 import uploadConfig from './upload'
-
 import userController from './controllers/userControllers'
 import sessionController from './controllers/sessionController'
 import postController from './controllers/postController'
@@ -20,6 +19,8 @@ routes.post('/session',SessionController.create)
 routes.post('/post',upload.single('photoPost'),PostController.create)
 routes.delete('/post/:id',PostController.delete)
 routes.get('/users',UserController.index)
-routes.post('/user/:userId',FriendRequestController.create)
+routes.post('/user/:idRecipient',FriendRequestController.create)
+routes.delete('/friendrequest',FriendRequestController.delete)
+routes.get('/listfriendrequest',FriendRequestController.index)
 
 export default routes
