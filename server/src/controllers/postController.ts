@@ -22,10 +22,17 @@ class postController {
     if (post.user_id == userId) {
       await knex("posts").where("id", id).delete();
       return response.status(204).send();
-      
     } else {
       return response.status(401).json({ error: "Exclusão não permitida" });
     }
+  }
+
+  async index(request: Request, response: Response) {
+    const { user_id } = request.body;
+    const posts = await knex("friends AS f")
+      .join("posts as p", "p.user_id", "f.friend_id")
+      .where("f.user_id", user_id).select('p.namePost','p.user_id','p.description','p.photoPost','p.likes');
+    return response.json({ posts });
   }
 }
 

@@ -13,7 +13,8 @@ class userController {
 
   async index(request: Request, response: Response) {
     const {username} = request.body
-    const users = await knex('users').where('username','like',`%${username}%`).select('id')
+    const users = await knex('users').where('username','like',`%${username}%`)
+    console.log(users)
     return response.json({users})
   }
 

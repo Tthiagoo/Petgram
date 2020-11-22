@@ -6,9 +6,9 @@ class friendRequestController {
 		const  idSender  = request.headers.authorization;
         const { idRecipient } = request.params;
         
-        const { photo } = await knex('users').where('id',idSender).select('photo').first()
+        const { photo, username } = await knex('users').where('id',idSender).select('photo','username').first()
 
-        const friendRequest = { idSender, idRecipient, photoSender:photo };
+        const friendRequest = { idSender, idRecipient, photoSender:photo, userSender:username };
 
         const searchRequest = await knex('friendrequest').where({
             'idSender' : idSender, 
