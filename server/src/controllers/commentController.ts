@@ -2,20 +2,28 @@ import { Request, Response } from "express";
 import knex from "../database/connection";
 
 class commentController {
-    async create(request: Request, response: Response) {
-        const {usernameComment, comment, post_id} = request.body
-        const user_id = request.headers.authorization
+  async create(request: Request, response: Response) {
+    const { usernameComment, comment, post_id } = request.body;
+    const user_id = request.headers.authorization;
 
-        const Comment = { usernameComment, comment, post_id, user_id, photoComment:request.file.filename}
-        
-        const data = await knex('comments').insert(Comment)
+    const Comment = {
+      usernameComment,
+      comment,
+      post_id,
+      user_id,
+      photoComment: request.file.filename,
+    };
 
-        return response.json({Comment})
+    const data = await knex("comments").insert(Comment);
 
-    }
-    async index(request: Request, response: Response){
-        
-    }
+    return response.json({ Comment });
+  }
+  async index(request: Request, response: Response) {
+    const {post_id} = request.body
+
+    const Comments  = await knex('comments').where('post_id',post_id)
+    response.json({Comments})
+  }
 }
 
-export default commentController
+export default commentController;

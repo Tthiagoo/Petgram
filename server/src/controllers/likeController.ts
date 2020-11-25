@@ -3,11 +3,15 @@ import knex from "../database/connection";
 
 class likeController{
     async create(request: Request, response: Response) {
-        const {post_id} = request.body
+        const {posts_id, nameUser} = request.body
         
-        await knex('posts').where('post_id',post_id).update('post_id', +1)
+        const user_id = request.headers.authorization
+        
+        const like = {posts_id, nameUser, user_id}
 
-        return response.json({post_id})
+        await knex("likes").insert(like);
+
+       return response.json({like})
     }
 }
 export default likeController

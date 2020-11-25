@@ -37,5 +37,9 @@ routes.post('/friends',FriendController.create)
 routes.get('/friends',FriendController.index)
 
 routes.post('/comment',upload.single('photoComment'),CommentController.create)
+routes.get('/comment',upload.single('photoComment'),CommentController.index)
+
+routes.post('/like',LikeController.create)
+
 
 export default routes
