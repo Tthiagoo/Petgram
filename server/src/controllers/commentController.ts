@@ -20,10 +20,19 @@ class commentController {
   }
   async index(request: Request, response: Response) {
     const {post_id} = request.body
-
     const Comments  = await knex('comments').where('post_id',post_id)
     response.json({Comments})
   }
+
+  async delete(request: Request, response: Response){
+    const {id} = request.body
+
+    await knex('comments').where('id',id).first().delete()
+    return response.sendStatus(200)
+    
+  }
+
+
 }
 
 export default commentController;

@@ -5,7 +5,7 @@ import userController from './controllers/userControllers'
 import sessionController from './controllers/sessionController'
 import postController from './controllers/postController'
 import friendRequestController from './controllers/FriendRequestController'
-import friendController from './controllers/friendController'
+import friendController from './controllers/FriendController'
 import likeController from './controllers/likeController';
 import commentController from './controllers/commentController';
 
@@ -22,6 +22,8 @@ const CommentController = new commentController()
 
 routes.post('/register',upload.single('photo'), UserController.create)
 routes.get('/users',UserController.index)
+routes.get('/user/:username',UserController.read)
+routes.put('/update/:id',upload.single('photo'),UserController.update)
 
 routes.post('/session',SessionController.create)
 
@@ -38,8 +40,10 @@ routes.get('/friends',FriendController.index)
 
 routes.post('/comment',upload.single('photoComment'),CommentController.create)
 routes.get('/comment',upload.single('photoComment'),CommentController.index)
+routes.delete('/comment',CommentController.delete)
 
 routes.post('/like',LikeController.create)
-
+routes.get('/like',LikeController.index)
+routes.delete('/like',LikeController.delete)
 
 export default routes

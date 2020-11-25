@@ -13,5 +13,18 @@ class likeController{
 
        return response.json({like})
     }
+    async index(request: Request, response: Response){
+        const {posts_id} = request.body
+
+        const likes = await knex('likes').where('posts_id',posts_id)
+        return response.json({likes})
+    }
+
+    async delete(request: Request, response: Response){
+        const {posts_id} = request.body
+
+        await knex('likes').where('posts_id',posts_id).first().delete()
+        return response.sendStatus(200)
+    }
 }
 export default likeController
