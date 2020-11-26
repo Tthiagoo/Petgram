@@ -38,6 +38,12 @@ class userController {
     }).where('id','=',id);
     
     return response.sendStatus(200)
+
+  }async delete(request: Request, response: Response) {
+    const {id} = request.body
+
+    await knex('users').where('id',id).delete().first()
+    return response.sendStatus(200)
   }
   
 }

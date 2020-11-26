@@ -32,6 +32,18 @@ class friendController {
 
     return response.json({friends})
   }
+  async delete(request: Request, response: Response){
+    const { user_id, friend_id } = request.body;
+
+    await knex('friends').where({ 
+      friend_id,
+      user_id,
+    }).first().delete()
+
+    return response.status(204).send();
+  }
+
+
 }
 
 export default friendController;

@@ -24,6 +24,7 @@ routes.post('/register',upload.single('photo'), UserController.create)
 routes.get('/users',UserController.index)
 routes.get('/user/:username',UserController.read)
 routes.put('/update/:id',upload.single('photo'),UserController.update)
+routes.delete('/user',UserController.delete)
 
 routes.post('/session',SessionController.create)
 
@@ -37,6 +38,7 @@ routes.get('/friendrequest',FriendRequestController.index)
 
 routes.post('/friends',FriendController.create)
 routes.get('/friends',FriendController.index)
+routes.delete('/friends',FriendController.delete)
 
 routes.post('/comment',upload.single('photoComment'),CommentController.create)
 routes.get('/comment',upload.single('photoComment'),CommentController.index)
