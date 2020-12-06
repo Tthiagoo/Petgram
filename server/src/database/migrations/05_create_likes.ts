@@ -8,6 +8,7 @@ export async function up(knex:Knex){
         table.integer('posts_id').references('id').inTable('posts') 
     })
 }
+
 export async function down(knex:Knex){
     return knex.schema.dropTable('posts')
 }

@@ -9,7 +9,7 @@ export default function Post() {
 	const { colorMode } = useColorMode();
 
 	return (
-		<ListItem width={["93%","70%","68%","60%","40%"]} marginTop="10px" height="auto" marginBottom="20px">
+		<ListItem width={["93%","70%","68%","60%","35%"]} marginTop="10px" height="auto" marginBottom="20px">
 			<Grid
 				height="auto"
 				borderRadius="20px"
@@ -25,10 +25,11 @@ export default function Post() {
 					h="100%"
 					gridArea="header"
 					padding="5px"
+					marginTop="15px"
 				>
 					<Image
 						borderRadius={["100px"]}
-						size={["40px", "60px"]}
+						size={["20px", "40px"]}
 						marginLeft="5px"
 						backgroundColor="white"
 					/>
@@ -40,12 +41,12 @@ export default function Post() {
 				<Flex
 					gridArea="photo"
 					minWidth="100px"
-					minHeight="400px"
+					height="300px"
 					justifyContent="center"
 				>
 					<Image
-						minWidth="95%"
-						minHeight="100%"
+						minWidth="80%"
+						minHeight="85%"
 						backgroundColor="white"
 						borderRadius="15px"
 					/>
