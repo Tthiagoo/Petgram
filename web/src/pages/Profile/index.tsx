@@ -154,17 +154,17 @@ export default function Profile() {
 		  borderTop="1px solid grey"
 		  paddingTop="15px"
         >
-          <Box w="100%" h={["120px", "200px", "280px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
-          <Box w="100%" h={["120px", "200px", "260px"]} bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]} bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
+          <Box w="100%" h={["120px", "200px", "320px","340"]}bg="grey" />
         </Grid>
       </Flex>
     </Flex>

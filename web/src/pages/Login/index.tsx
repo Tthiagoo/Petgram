@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent,ChangeEvent } from "react";
 import ThemeSelector from "../../components/ThemeChange";
 import logo from "../../assets/logo.png";
 import logoDark from "../../assets/logoDark.png";
@@ -9,7 +9,7 @@ import {
   Grid,
   Flex,
   Button,
-  Text,
+  
   useColorMode,
   Box,
 } from "@chakra-ui/core";
@@ -22,14 +22,18 @@ export default function Login() {
   const LogoStyle = colorMode === "light" ? logo : logoDark;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+ // const history = useHistory();
 
-  async function handleLogin(e:any) {
-    e.preventDefault();
+
+  async function handleLogin(e:FormEvent) {
+    e.preventDefault()
 
     const response = await api.post("session", { username, password });
     console.log(response.data);
   }
+
+
+  
 
   return (
     <Grid
@@ -50,9 +54,9 @@ export default function Login() {
 
       <Flex
         backgroundColor={colorMode === "light" ? "blue.200" : "blue.600"}
-        width={["80%", "70%", "85%", "90%", "60%"]}
+        width={["80%", "70%", "85%", "90%", "30em"]}
         gridArea="form"
-        height={["77%", "75%", "58%", "50%", "90%"]}
+        height={["80%", "50%", "60%", "45%","30em"]}
         borderRadius="20px"
         flexDirection="column"
         padding="20px"
@@ -67,7 +71,7 @@ export default function Login() {
           size="md"
           marginTop="30px"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e:ChangeEvent<HTMLInputElement>)=> setUsername(e.target.value)}
         />
 
         <Input
@@ -76,8 +80,20 @@ export default function Login() {
           height="60px"
           size="md"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e:ChangeEvent<HTMLInputElement>)=> setPassword(e.target.value)}
         />
+<Input
+          placeholder="password"
+          marginTop="25px"
+          height="60px"
+          size="md"
+          value={password}
+          onChange={(e:ChangeEvent<HTMLInputElement>)=> setPassword(e.target.value)}
+        />
+
+
+    
+       
 
         <Link to="/main" style={{ width: "100%", display: "flex" }}>
           <Button
@@ -86,8 +102,8 @@ export default function Login() {
             height={20}
             fontSize={30}
             backgroundColor={colorMode === "light" ? "#0878b9" : "#075988"}
-			color="white"
-			onClick={handleLogin}
+			      color="white"
+		        onClick={handleLogin}
           >
             Entrar
           </Button>
@@ -124,9 +140,9 @@ export default function Login() {
           <img src={LogoStyle} alt="" />
         </Box>
 
-        <Box>
+        <Box  w={{lg:"38%"}}>
           <FaDog
-            size="80px"
+            size="100%"
             style={{ marginTop: "15px", marginLeft: "10px" }}
             color={colorMode === "dark" ? "#075988" : "#fff"}
           />

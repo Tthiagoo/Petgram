@@ -1,10 +1,10 @@
 import React from "react";
 import {
-	Heading,
+
 	Grid,
 	Flex,
 	Button,
-	Text,
+
 	useColorMode,
 	Box,
 	Textarea,
@@ -49,7 +49,7 @@ export default function Register() {
 					width={["auto"]}
 					alignItems="center"
 				>
-					<Image borderRadius={['80px','10px']} size={['100px','100px','300px','380px']}  backgroundColor="white"/>
+					<Image borderRadius={['80px','10px']} size={['100px','100px','300px','3800px','400px','500px']}  backgroundColor="white"/>
 				</Flex>
 
 				<Flex
