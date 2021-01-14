@@ -1,20 +1,53 @@
-import React from "react";
+import React, { useState, useMemo, FormEvent, ChangeEvent } from "react";
 import {
-
 	Grid,
 	Flex,
 	Button,
-
 	useColorMode,
 	Box,
 	Textarea,
-	Image,
+	
 } from "@chakra-ui/core";
 import ThemeSelector from "../../components/ThemeChange";
 import Input from "../../components/Input";
+import api from "../../api";
 
 export default function Register() {
 	const { colorMode } = useColorMode();
+	const [photo, setPhoto] = useState(null);
+
+	const [name, setName] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [bio, setBio] = useState("");
+
+	const input = document.getElementById("inputPhoto");
+
+	function clickPhoto() {
+		input?.click();
+	}
+	const preview = useMemo(() => {
+		return photo ? URL.createObjectURL(photo) : null;
+	}, [photo]);
+
+	async function handleRegister(e: FormEvent) {
+		e.preventDefault();
+
+		const data = new FormData();
+
+		data.append("photo", photo!);
+		data.append("name", name);
+		data.append("username", username);
+		data.append("password", password);
+		data.append("bio", bio);
+		console.log(data);
+		console.log(username)
+		console.log(password)
+		console.log(photo)
+		console.log(preview)
+		await api.post("register", data);
+	}
+
 	return (
 		<Flex
 			height="100vh"
@@ -30,7 +63,6 @@ export default function Register() {
 			<Box alignSelf="start" marginBottom="auto" marginTop="10px">
 				<ThemeSelector aria-label="" />
 			</Box>
-
 			<Grid
 				as="main"
 				height="87%"
@@ -45,11 +77,30 @@ export default function Register() {
 			>
 				<Flex
 					gridArea="photo"
-				
 					width={["auto"]}
 					alignItems="center"
+					justifyContent="center"
+					flexDirection="column"
 				>
-					<Image borderRadius={['80px','10px']} size={['100px','100px','300px','3800px','400px','500px']}  backgroundColor="white"/>
+					<Box
+						display="flex"
+						rounded="full"
+						//width="100%"
+						//height="50%"
+						size={["100px", "100px", "300px", "380px", "400px", "500px"]}
+						backgroundColor="rgba(255, 255, 255, 0.082);"
+						backgroundImage={`url(${preview})`}
+						backgroundSize="cover"
+						id="labelPhoto"
+						onClick={clickPhoto}
+					></Box>
+					<Input
+						type="file"
+						onChange={(e: any) =>{ setPhoto(e.target.files[0]); console.log(e.target.files[0])}}
+						alignContent="center"
+						id="inputPhoto"
+						//display="none"
+					/>
 				</Flex>
 
 				<Flex
@@ -65,18 +116,28 @@ export default function Register() {
 						height="10%"
 						marginBottom={["5px", "20px"]}
 						placeholder="Seu Nome"
+						value={name}
+						onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
 					/>
 					<Input
 						width="80%"
 						height="10%"
 						marginBottom={["5x", "30px"]}
 						placeholder="Seu username"
+						value={username}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setUsername(e.target.value)
+						}
 					/>
 					<Input
 						width="80%"
 						height="10%"
 						marginBottom={["5px", "30px"]}
 						placeholder="Sua senha"
+						value={password}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setPassword(e.target.value)
+						}
 					/>
 					<Textarea
 						width="80%"
@@ -84,6 +145,10 @@ export default function Register() {
 						marginBottom={["", "30px"]}
 						placeholder="Sua biodescrição"
 						fontSize={20}
+						value={bio}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setBio(e.target.value)
+						}
 					/>
 					<Button
 						width="80%"
@@ -91,6 +156,7 @@ export default function Register() {
 						fontSize={20}
 						backgroundColor={colorMode === "light" ? "#0878b9" : "#085b8b"}
 						color="white"
+						onClick={handleRegister}
 					>
 						Cadastrar
 					</Button>
