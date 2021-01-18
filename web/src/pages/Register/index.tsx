@@ -21,10 +21,12 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
 
-  const input = document.getElementById("inputPhoto");
+  const inputPhoto:HTMLElement = document.getElementById("inputPhoto") as HTMLElement
 
   function clickPhoto() {
-    input?.click();
+    inputPhoto?.click()
+
+    console.log(photo);
   }
   const preview = useMemo(() => {
     return photo ? URL.createObjectURL(photo) : null;
@@ -92,12 +94,15 @@ export default function Register() {
             backgroundImage={`url(${preview})`}
             backgroundSize="cover"
             id="labelPhoto"
-            onClick={clickPhoto}
             border={photo ? "none" : "3px dashed black"}
             justifyContent="center"
             alignItems="center"
           >
-            <FaCameraRetro display={photo ? "none" : "flex"} size={30}/>
+            <FaCameraRetro
+              style={photo ? { display: "none" } : { display: "flex" }}
+              onClick={clickPhoto}
+              size={30}
+            />
           </Box>
 
           <Input
@@ -108,6 +113,7 @@ export default function Register() {
             }}
             alignContent="center"
             id="inputPhoto"
+            
             //display="none"
           />
         </Flex>
