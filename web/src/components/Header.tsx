@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Flex, useColorMode, Box } from "@chakra-ui/core";
-import { FaUser, FaHome, FaCameraRetro } from "react-icons/fa";
+import {
+	Flex,
+	useColorMode,
+	Box,
+	useDisclosure,
+
+} from "@chakra-ui/core";
+import { FaUser, FaHome, FaCameraRetro, FaSearch } from "react-icons/fa";
 
 import ThemeSelector from "./ThemeChange";
 
@@ -9,9 +15,13 @@ import logo from "../assets/logo.png";
 
 import logoDark from "../assets/logoDark.png";
 
+import ModalUi from "./Modal";
+
 export default function Header() {
 	const { colorMode } = useColorMode();
 	const LogoStyle = colorMode === "light" ? logo : logoDark;
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	return (
 		<Flex
 			gridArea="logo"
@@ -19,7 +29,14 @@ export default function Header() {
 			height="100%"
 			backgroundColor={colorMode === "light" ? "blue.200" : "blue.500"}
 			alignItems="center"
-			justifyContent={['space-between','space-between','space-between','space-between','space-around']}
+			justifyContent={[
+				"space-between",
+				"space-between",
+				"space-between",
+				"space-between",
+				"space-around",
+			]}
+			border="1px solid black"
 		>
 			<Box gridArea="logo" marginLeft="-5px">
 				<ThemeSelector aria-label="" />
@@ -29,8 +46,13 @@ export default function Header() {
 				<img src={LogoStyle} alt="" />
 			</Box>
 
-			<Box gridArea="logo" marginRight="15px" display="flex" flexDirection="row">
-
+			<Box
+				gridArea="logo"
+				marginRight="15px"
+				display="flex"
+				flexDirection="row"
+				border="1px solid yellow"
+			>
 				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
 					<Link to="/profile" style={{ width: "100%", display: "flex" }}>
 						<FaUser size="100%" />
@@ -41,10 +63,15 @@ export default function Header() {
 					<FaHome size="100%" />
 				</Box>
 
-				<Box w={["18px", "25px", "30px", "35px", "20px"]}>
+				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
 					<FaCameraRetro size="100%" />
 				</Box>
 
+				<Box w={["18px", "25px", "30px", "35px", "20px"]}>
+					<FaSearch size="100%" onClick={onOpen} />
+					<ModalUi isOpen={isOpen} onClose={onClose}>Usuarios</ModalUi>
+				
+				</Box>
 			</Box>
 		</Flex>
 	);
