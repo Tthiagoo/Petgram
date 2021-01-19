@@ -8,8 +8,7 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-	Button,
-  useDisclosure,
+
   IModal as ModalProps
 
 } from "@chakra-ui/core";

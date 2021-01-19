@@ -28,17 +28,17 @@ class postController {
 	}
 
 	async index(request: Request, response: Response) {
-		const { user_id } = request.body;
+		const { user_id,page } = request.body;
+
 		const posts = await knex("friends AS f")
 			.join("posts as p", "p.user_id", "f.friend_id")
+			.join('likes as l','l.user_id','f.friend_id')
 			.where("f.user_id", user_id)
-			.select(
-				"p.namePost",
-				"p.user_id",
-				"p.description",
-				"p.photoPost",
-				"p.likes"
-			);
+			.select("p.namePost", "p.user_id", "p.description", "p.photoPost", "l.id","l.posts_id")
+			.limit(5)
+			.offset((page - 1) * 5);
+
+
 		return response.json({ posts });
 	}
 

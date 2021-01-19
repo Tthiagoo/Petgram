@@ -14,9 +14,15 @@ class userController {
 	}
 
 	async index(request: Request, response: Response) {
-		const { username } = request.body;
-		const users = await knex("users").where("username", "like", `%${username}%`);
-		console.log(users);
+    let { username, page } = request.body;
+    
+    const users = await knex("users")
+    .where("username", "like", `%${username}%`)
+    .select("*")
+    .limit(5)
+    .offset((page - 1) * 5)
+
+		//console.log(users);
 		return response.json({ users });
 	}
 

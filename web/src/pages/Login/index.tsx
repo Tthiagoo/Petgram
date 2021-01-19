@@ -3,7 +3,7 @@ import ThemeSelector from "../../components/ThemeChange";
 import logo from "../../assets/logo.png";
 import logoDark from "../../assets/logoDark.png";
 import { FaDog, FaSignInAlt } from "react-icons/fa";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
 	Heading,
 	Grid,
