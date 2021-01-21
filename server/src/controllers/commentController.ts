@@ -19,8 +19,10 @@ class commentController {
     return response.json({ Comment });
   }
   async index(request: Request, response: Response) {
-    const { post_id } = request.body;
-    const Comments = await knex("comments").where("post_id", post_id);
+    const { post_id, page = 1 } = request.body;
+    const Comments = await knex("comments").where("post_id", post_id)
+    .limit(5)
+    .offset((page - 1) * 5);
     response.json({ Comments });
   }
 
