@@ -8,32 +8,61 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-
-  IModal as ModalProps
-
+	IModal as ModalProps,
+	Box,
+	Flex,
+	List,
+	ListItem,
 } from "@chakra-ui/core";
+import Input from "./Input";
+import ItemUser from "./ItemUser";
+import { FaSearch } from "react-icons/fa";
 
-const ModalUi: React.FC<ModalProps> = ({isOpen, onClose}) => {
- 
+const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
+		<Modal  isOpen={isOpen} onClose={onClose} size={sizes}>
 			<ModalOverlay />
 			<ModalContent>
-				<ModalHeader>Modal Title</ModalHeader>
+				<ModalHeader display="flex" justifyContent="center">
+					Pesquisar
+				</ModalHeader>
 				<ModalCloseButton />
-				<ModalBody>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem facere
-					distinctio, ut aut numquam sed eum modi dolores corporis beatae eaque
-					obcaecati similique eos veniam minus assumenda cumque, alias explicabo.
+				<ModalBody
+				
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					justifyContent="center"
+				>
+					<Input
+						width="90%"
+						height="10%"
+						fontSize="1em"
+						paddingY="10px"
+						paddingLeft="35px"
+					/>
+					<FaSearch
+						style={{
+							position: "relative",
+							left: "28px",
+							bottom: "28px",
+							alignSelf: "end",
+						}}
+					/>
+					<Flex maxHeight="30em" overflowY="auto" width="100%">
+						
+
+						<ItemUser/>
+						
+					
+					</Flex>
 				</ModalBody>
 
-				<ModalFooter>
-				
-				
-				</ModalFooter>
+				<ModalFooter></ModalFooter>
 			</ModalContent>
 		</Modal>
 	);
-}
-export default ModalUi
+};
+export default ModalUi;
