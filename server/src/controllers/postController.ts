@@ -10,7 +10,7 @@ class postController {
 			user_id: request.headers.authorization,
 			photoPost: request.file.filename,
 		};
-		const data = await knex("posts").insert(post);
+		await knex("posts").insert(post);
 		return response.json({ post });
 	}
 	async delete(request: Request, response: Response) {
@@ -32,9 +32,8 @@ class postController {
 
 		const posts = await knex("friends AS f")
 			.join("posts as p", "p.user_id", "f.friend_id")
-			.join('likes as l','l.user_id','f.friend_id')
 			.where("f.user_id", user_id)
-			.select("p.namePost", "p.user_id", "p.description", "p.photoPost", "l.id","l.posts_id")
+			.select("p.namePost", "p.user_id", "p.description", "p.photoPost")
 			.limit(5)
 			.offset((page - 1) * 5);
 
