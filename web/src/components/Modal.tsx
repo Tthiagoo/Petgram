@@ -22,15 +22,14 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 
 	return (
-		<Modal  isOpen={isOpen} onClose={onClose} size={sizes}>
+		<Modal isOpen={isOpen} onClose={onClose} size="sm">
 			<ModalOverlay />
-			<ModalContent>
+			<ModalContent borderRadius={10}>
 				<ModalHeader display="flex" justifyContent="center">
 					Pesquisar
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody
-				
 					display="flex"
 					flexDirection="column"
 					alignItems="center"
@@ -51,12 +50,21 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 							alignSelf: "end",
 						}}
 					/>
-					<Flex maxHeight="30em" overflowY="auto" width="100%">
-						
-
-						<ItemUser/>
-						
+					<Flex
+						maxHeight="21em"
+						overflowY="auto"
+						width="100%"
+						flexDirection="column"
 					
+					>
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
+						<ItemUser />
 					</Flex>
 				</ModalBody>
 

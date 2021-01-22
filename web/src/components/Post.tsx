@@ -41,7 +41,7 @@ export default function Post() {
           gridArea="header"
           padding="5px"
           marginTop="15px"
-          border="solid 1px yellow"
+        
         >
           <Image
             borderRadius={["100px"]}
@@ -60,14 +60,14 @@ export default function Post() {
           width="100%"
           height={["20em", "30em", "35em"]}
           justifyContent="center"
-          border="solid 1px red"
+        
         >
           <Image
             width={["95%", "95%", "95%"]}
             height="100%"
             backgroundColor="white"
             borderRadius="15px"
-            border="1px solid black"
+          
           />
         </Flex>
 

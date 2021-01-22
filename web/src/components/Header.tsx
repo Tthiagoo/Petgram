@@ -36,7 +36,7 @@ export default function Header() {
 				"space-between",
 				"space-around",
 			]}
-			border="1px solid black"
+			
 		>
 			<Box gridArea="logo" marginLeft="-5px">
 				<ThemeSelector aria-label="" />
@@ -51,7 +51,7 @@ export default function Header() {
 				marginRight="15px"
 				display="flex"
 				flexDirection="row"
-				border="1px solid yellow"
+			
 			>
 				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
 					<Link to="/profile" style={{ width: "100%", display: "flex" }}>
