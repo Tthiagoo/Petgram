@@ -21,13 +21,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
 
-  const inputPhoto:HTMLElement = document.getElementById("inputPhoto") as HTMLElement
-
-  function clickPhoto() {
-    inputPhoto?.click()
-
-    console.log(photo);
-  }
+  
+  
   const preview = useMemo(() => {
     return photo ? URL.createObjectURL(photo) : null;
   }, [photo]);
@@ -85,37 +80,34 @@ export default function Register() {
           flexDirection="column"
         >
           <Box
+            as="label"
             display="flex"
             rounded="full"
-            //width="100%"
-            //height="50%"
             size={["100px", "100px", "300px", "380px", "400px", "500px"]}
             backgroundColor="rgba(255, 255, 255, 0.070);"
             backgroundImage={`url(${preview})`}
             backgroundSize="cover"
-            id="labelPhoto"
             border={photo ? "none" : "3px dashed black"}
             justifyContent="center"
             alignItems="center"
+            style={{ backgroundSize: "cover" }}
+            //onClick={clickPhoto}
+            cursor="pointer"
           >
             <FaCameraRetro
               style={photo ? { display: "none" } : { display: "flex" }}
-              onClick={clickPhoto}
               size={30}
+              cursor="pointer"
+            />
+            <Input
+              type="file"
+              onChange={(e: any) => {
+                setPhoto(e.target.files[0]);
+                console.log(e.target.files[0]);
+              }}
+              display="none"
             />
           </Box>
-
-          <Input
-            type="file"
-            onChange={(e: any) => {
-              setPhoto(e.target.files[0]);
-              console.log(e.target.files[0]);
-            }}
-            alignContent="center"
-            id="inputPhoto"
-            
-            //display="none"
-          />
         </Flex>
 
         <Flex
@@ -163,6 +155,7 @@ export default function Register() {
             placeholder="Sua biodescrição"
             fontSize={20}
             value={bio}
+            focusBorderColor="blue.700"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setBio(e.target.value)
             }
@@ -171,9 +164,14 @@ export default function Register() {
             width="80%"
             height={["50px"]}
             fontSize={20}
-            backgroundColor={colorMode === "light" ? "#0878b9" : "#085b8b"}
+            backgroundColor={colorMode === "light" ? "#0878b9" : "#0c4363"}
             color="white"
             onClick={handleRegister}
+            _hover={
+              colorMode === "light"
+                ? { backgroundColor: "#186d9e" }
+                : { backgroundColor: "#14608c" }
+            }
           >
             Cadastrar
           </Button>

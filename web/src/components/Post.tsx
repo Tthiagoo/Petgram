@@ -8,13 +8,18 @@ import {
   useColorMode,
   Box,
   Image,
+  useDisclosure,
 } from "@chakra-ui/core";
+import Input from "./Input";
 import { FaRegHeart, FaRegComments } from "react-icons/fa";
+
+import ModalUi from "./ModalComments";
 
 import { ListItem } from "@chakra-ui/core";
 
 export default function Post() {
   const { colorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <ListItem
@@ -41,7 +46,6 @@ export default function Post() {
           gridArea="header"
           padding="5px"
           marginTop="15px"
-        
         >
           <Image
             borderRadius={["100px"]}
@@ -60,14 +64,12 @@ export default function Post() {
           width="100%"
           height={["20em", "30em", "35em"]}
           justifyContent="center"
-        
         >
           <Image
             width={["95%", "95%", "95%"]}
             height="100%"
             backgroundColor="white"
             borderRadius="15px"
-          
           />
         </Flex>
 
@@ -78,14 +80,20 @@ export default function Post() {
           paddingTop="15px"
           paddingLeft="18px"
         >
-          <Box >
-            <FaRegHeart size={28} style={{marginRight:"10px"}}/>
-            <Text style={{fontWeight:"bold"}}>210</Text>
+          <Box>
+            <FaRegHeart
+              size={28}
+              style={{ marginRight: "10px" }}
+              cursor="pointer"
+            />
+            <Text style={{ fontWeight: "bold" }}>210</Text>
           </Box>
 
           <Box marginLeft="10px">
-            <FaRegComments size={28} />
-
+            <FaRegComments size={28} cursor="pointer" onClick={onOpen} />
+            <ModalUi isOpen={isOpen} onClose={onClose}>
+              Comments
+            </ModalUi>
           </Box>
         </Flex>
 
@@ -148,7 +156,25 @@ export default function Post() {
             tste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
             tste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve t
           </Text>
+          <Text
+            marginTop="10px"
+            fontWeight="bold"
+            cursor="pointer"
+            onClick={onOpen}
+          >
+            Ver todos os 53 comentarios
+          </Text>
         </Flex>
+        <Input
+          display={['none',"flex"]}
+          marginTop="10px"
+          borderBottomLeftRadius="20px"
+          borderBottomRightRadius="20px"
+          borderTopRightRadius="0px"
+          borderTopLeftRadius="0px"
+          placeholder="Adicionar comentario"
+          padding="25px"
+        />
       </Grid>
     </ListItem>
   );

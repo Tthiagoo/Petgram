@@ -13,13 +13,13 @@ import ThemeSelector from "./ThemeChange";
 
 import logo from "../assets/logo.png";
 
-import logoDark from "../assets/logoDark.png";
+//import logoDark from "../assets/logoDark.png";
 
 import ModalUi from "./Modal";
 
 export default function Header() {
 	const { colorMode } = useColorMode();
-	const LogoStyle = colorMode === "light" ? logo : logoDark;
+	const LogoStyle = logo 
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
@@ -60,15 +60,15 @@ export default function Header() {
 				</Box>
 
 				<Box marginRight="15px" w={["22px", "27px", "32px", "35px", "23px"]}>
-					<FaHome size="100%" />
+					<FaHome size="100%" cursor="pointer" />
 				</Box>
 
 				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
-					<FaCameraRetro size="100%" />
+					<FaCameraRetro size="100%" cursor="pointer" />
 				</Box>
 
 				<Box w={["18px", "25px", "30px", "35px", "20px"]}>
-					<FaSearch size="100%" onClick={onOpen} />
+					<FaSearch size="100%" onClick={onOpen} cursor="pointer"/>
 					<ModalUi isOpen={isOpen} onClose={onClose}>Usuarios</ModalUi>
 				
 				</Box>

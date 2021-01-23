@@ -9,8 +9,6 @@ const ThemeSelector: React.FC<IconButtonProps> = () => {
     <Box display="flex" alignSelf="center" justifySelf="start" marginLeft="20px">
       <IconButton
       display="flex"
-       
-        
         aria-label=""
         maxWidth="20px"
         icon={colorMode === "light" ? "moon" : "sun"}

@@ -16,16 +16,14 @@ import {
   useColorMode,
 } from "@chakra-ui/core";
 import Input from "./Input";
-import ItemUser from "./ItemUser";
-import { FaSearch } from "react-icons/fa";
+
+import Comment from "./Comment";
 
 const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  
+  const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
   const { colorMode } = useColorMode();
-
   return (
-	  
-    <Modal isOpen={isOpen} onClose={onClose} size="sm">
+    <Modal isOpen={isOpen} onClose={onClose} size={sizes}>
       <ModalOverlay />
       <ModalContent
         backgroundImage={
@@ -36,48 +34,40 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         borderRadius={10}
       >
         <ModalHeader display="flex" justifyContent="center">
-          Pesquisar
+          Comentarios
         </ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton marginBottom="10px" />
         <ModalBody
           display="flex"
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
+          border="1px solid yellow"
         >
-          <Input
-            width="90%"
-            height="10%"
-            fontSize="1em"
-            paddingY="10px"
-            paddingLeft="35px"
-          />
-          <FaSearch
-            style={{
-              position: "relative",
-              left: "28px",
-              bottom: "28px",
-              alignSelf: "end",
-            }}
-          />
           <Flex
             maxHeight="21em"
             overflowY="auto"
             width="100%"
             flexDirection="column"
           >
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
           </Flex>
         </ModalBody>
 
-        
+        <ModalFooter
+          display="flex"
+          justifyContent="center"
+         
+        >
+          <Input placeholder="Escreva seu comentario" />
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );
