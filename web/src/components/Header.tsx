@@ -13,7 +13,6 @@ import ThemeSelector from "./ThemeChange";
 
 import logo from "../assets/logo.png";
 
-//import logoDark from "../assets/logoDark.png";
 
 import ModalUi from "./Modal";
 

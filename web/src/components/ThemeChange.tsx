@@ -13,7 +13,6 @@ const ThemeSelector: React.FC<IconButtonProps> = () => {
         maxWidth="20px"
         icon={colorMode === "light" ? "moon" : "sun"}
         onClick={toggleColorMode}
-       
       />
       
     </Box>

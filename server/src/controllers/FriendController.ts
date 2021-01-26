@@ -10,40 +10,37 @@ class friendController {
       .where("id", friend_id)
       .select("photo", "username", "name")
       .first();
-    const friendship = { user_id, friend_id, friendPhoto:photo, friendUserName:username, friendName:name};
+    const friendship = {
+      user_id,
+      friend_id,
+      friendPhoto: photo,
+      friendUserName: username,
+      friendName: name,
+    };
 
-    const data = await knex("friends").insert(friendship);
+    await knex("friends").insert(friendship);
 
-    if (data) {
-      await knex("friendrequest")
-        .where({
-          idSender: friend_id,
-          idRecipient: user_id,
-        }).delete();
-      return response.status(204).send();
-    } else {
-      return response.status(404).json({ error: "data não existe" });
-    }
+    return response.status(204).send();
   }
   async index(request: Request, response: Response) {
     const { user_id } = request.body;
 
-    const friends = await knex('friends').where('user_id',user_id)
+    const friends = await knex("friends").where("user_id", user_id);
 
-    return response.json({friends})
+    return response.json({ friends });
   }
-  async delete(request: Request, response: Response){
+  async delete(request: Request, response: Response) {
     const { user_id, friend_id } = request.body;
 
-    await knex('friends').where({ 
-      friend_id,
-      user_id,
-    }).first().delete()
-
+    await knex("friends")
+      .where({
+        friend_id,
+        user_id,
+      })
+      .first()
+      .delete();
     return response.status(204).send();
   }
-
-
 }
 
 export default friendController;

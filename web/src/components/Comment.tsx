@@ -1,27 +1,67 @@
 import React from "react";
-import { Box, Flex, Image, Stack, Text, useColorMode } from "@chakra-ui/core";
+import { Flex, Image, Stack, Text  } from "@chakra-ui/core";
 
-import { FaSearch } from "react-icons/fa";
+
 
 export default function Comment() {
   return (
-    <Flex flexDirection="row" width="100%" height="5em" marginTop="10px">
-      <Flex alignItems="center" justifyContent="center" marginLeft="5px">
+    <Flex flexDirection="row" width="100%" height="auto" marginTop="10px">
+      <Flex alignItems="start" justifyContent="end" marginLeft="5px" >
         <Image
+        marginTop="15px"
           borderRadius={["100px"]}
-          size={["40px", "45px"]}
+          minH={['40px','50px']}
+          minW={['40px','50px']}
           backgroundColor="white"
         />
       </Flex>
 
-      <Stack spacing={1} padding={2} marginTop="5px">
+      <Stack spacing={1} padding={2} marginTop="5px" >
         <Text fontSize={["xl", "sm", "lg", "base"]} fontWeight="bold">
           Thiaguitoo
         </Text>
-        <Text fontSize={["xs", "xl", "sm"]} border="1px solid black">
+        <Text fontSize={["xs", "xl", "sm"]} >
         
           teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
-          t
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+          teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve
+
+
+          
+          
         </Text>
       </Stack>
     </Flex>

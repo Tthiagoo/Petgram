@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Box, Flex, Image, Stack, Text, useColorMode } from "@chakra-ui/core";
+import { Flex, Image, Stack, Text, useColorMode } from "@chakra-ui/core";
 
-import { FaSearch } from "react-icons/fa";
+
 
 export default function ItemUser() {
 	const { colorMode } = useColorMode();
@@ -30,19 +30,7 @@ export default function ItemUser() {
 				<Text fontSize={["xs", "xl", "sm"]}>Thiago Pereira Araujo Silva</Text>
 			</Stack>
 
-			{/*	<Flex
-				flexDirection="column"
-				height="100%"
-				width="75%"
-				border="1px solid red"
-			>
-				<Box height="60%" width="100%" border="1px solid yellow">
-					<Text fontSize={["xl", "sm", "lg", "base"]} fontWeight="bold">Thiaguitoo</Text>
-				</Box>
-				<Box height="40%" width="100%" border="1px solid blue">
-				<Text fontSize={["xs","xl", "sm"]}>Thiago Pereira Araujo Silva</Text>
-				</Box>
-		</Flex>*/}
+	
 		</Flex>
 	);
 }

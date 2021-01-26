@@ -40,24 +40,22 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <ModalBody
           display="flex"
           flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          border="1px solid yellow"
+     
         >
           <Flex
             maxHeight="21em"
             overflowY="auto"
             width="100%"
             flexDirection="column"
+           
+            justifyContent="start"
           >
             <Comment />
             <Comment />
             <Comment />
             <Comment />
             <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
+            
           </Flex>
         </ModalBody>
 
