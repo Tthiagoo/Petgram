@@ -4,27 +4,19 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
 
-  ModalBody,
-  ModalCloseButton,
-  IModal as ModalProps,
-  
-  Flex,
- 
+  IModal as ModalProps, 
   useColorMode,
 } from "@chakra-ui/core";
-import Input from "./Input";
-import ItemUser from "./ItemUser";
-import { FaSearch } from "react-icons/fa";
 
-const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+
+const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose, children, size,id }) => {
   
   const { colorMode } = useColorMode();
 
   return (
 	  
-    <Modal isOpen={isOpen} onClose={onClose} size="sm">
+    <Modal isOpen={isOpen} onClose={onClose} size={size} id={id} key={id}>
       <ModalOverlay />
       <ModalContent
         backgroundImage={
@@ -34,51 +26,10 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }
         borderRadius={10}
       >
-        <ModalHeader display="flex" justifyContent="center">
-          Pesquisar
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Input
-            width="90%"
-            height="10%"
-            fontSize="1em"
-            paddingY="10px"
-            paddingLeft="35px"
-          />
-          <FaSearch
-            style={{
-              position: "relative",
-              left: "28px",
-              bottom: "28px",
-              alignSelf: "end",
-            }}
-          />
-          <Flex
-            maxHeight="21em"
-            overflowY="auto"
-            width="100%"
-            flexDirection="column"
-          >
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-            <ItemUser />
-          </Flex>
-        </ModalBody>
-
         
+        {children}        
       </ModalContent>
     </Modal>
   );
 };
-export default ModalUi;
+export default ModalComponent;

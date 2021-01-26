@@ -1,38 +1,19 @@
 import React from "react";
 
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
   ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  IModal as ModalProps,
-  Box,
+ 
   Flex,
-  List,
-  ListItem,
-  useColorMode,
 } from "@chakra-ui/core";
 import Input from "./Input";
-
 import Comment from "./Comment";
 
-const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
-  const { colorMode } = useColorMode();
+const ModalComments: React.FC = () => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={sizes}>
-      <ModalOverlay />
-      <ModalContent
-        backgroundImage={
-          colorMode === "light"
-            ? "linear-gradient(to left bottom, #a6bbcd, #aecbd2, #c0d8d5, #d6e4da, #edf0e5);"
-            : "linear-gradient(to right top, #33383d, #1e3752, #152d48, #0c243e, #041b34);"
-        }
-        borderRadius={10}
-      >
+    <>
         <ModalHeader display="flex" justifyContent="center">
           Comentarios
         </ModalHeader>
@@ -40,7 +21,6 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <ModalBody
           display="flex"
           flexDirection="column"
-     
         >
           <Flex
             maxHeight="21em"
@@ -55,19 +35,16 @@ const ModalUi: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             <Comment />
             <Comment />
             <Comment />
-            
           </Flex>
         </ModalBody>
-
         <ModalFooter
           display="flex"
           justifyContent="center"
-         
         >
           <Input placeholder="Escreva seu comentario" />
         </ModalFooter>
-      </ModalContent>
-    </Modal>
+      </>
+    
   );
 };
-export default ModalUi;
+export default ModalComments

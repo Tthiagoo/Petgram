@@ -13,7 +13,9 @@ import {
 import Input from "./Input";
 import { FaRegHeart, FaRegComments } from "react-icons/fa";
 
-import ModalUi from "./ModalComments";
+
+import ModalComponent from  "./Modal"
+import ModalComments from './ModalComments'
 
 import { ListItem } from "@chakra-ui/core";
 
@@ -91,9 +93,9 @@ export default function Post() {
 
           <Box marginLeft="10px">
             <FaRegComments size={28} cursor="pointer" onClick={onOpen} />
-            <ModalUi isOpen={isOpen} onClose={onClose}>
-              Comments
-            </ModalUi>
+            <ModalComponent isOpen={isOpen} onClose={onClose} size="xl" id="1">
+              <ModalComments/>
+            </ModalComponent>
           </Box>
         </Flex>
 

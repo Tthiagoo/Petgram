@@ -1,8 +1,8 @@
 import React from 'react';
-import { Input as ChakraInput, InputProps as ChakraInputProps, useColorMode } from '@chakra-ui/core'
+import { Input as ChakraInput, InputProps as ChakraInputProps } from '@chakra-ui/core'
 
 const Input: React.FC<ChakraInputProps> = (props) => {
-  const { colorMode } = useColorMode();
+  
   return (
     <ChakraInput
       
