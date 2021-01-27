@@ -83,7 +83,7 @@ export default function Register() {
             as="label"
             display="flex"
             rounded="full"
-            size={["100px", "100px", "300px", "380px", "400px", "500px"]}
+            size={["130px", "130px", "300px", "380px", "400px", "500px"]}
             backgroundColor="rgba(255, 255, 255, 0.070);"
             backgroundImage={`url(${preview})`}
             backgroundSize="cover"

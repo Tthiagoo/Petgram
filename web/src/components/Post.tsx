@@ -25,7 +25,7 @@ export default function Post() {
 
   return (
     <ListItem
-      width={["93%", "70%", "68%", "60%", "50%"]}
+      width={["93%", "70%", "68%", "60%", "54%"]}
       marginTop="10px"
       height="auto"
       marginBottom="5px"
@@ -68,7 +68,7 @@ export default function Post() {
           justifyContent="center"
         >
           <Image
-            width={["95%", "95%", "95%"]}
+            width={["95%", "95%", "90%","85%","80%"]}
             height="100%"
             backgroundColor="white"
             borderRadius="15px"
