@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import knex from "../database/connection";
 
 class postController {
+
 	async create(request: Request, response: Response) {
 		const { namePost, description } = request.body;
 		const post = {
@@ -9,10 +10,14 @@ class postController {
 			description,
 			user_id: request.headers.authorization,
 			photoPost: request.file.filename,
+			photoUserPost:request.file.filename
 		};
+		
 		await knex("posts").insert(post);
 		return response.json({ post });
 	}
+
+
 	async delete(request: Request, response: Response) {
 		const { id } = request.params;
 		const userId = request.headers.authorization;
