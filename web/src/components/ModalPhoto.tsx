@@ -6,7 +6,6 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-  Flex,
   Box,
   Button,
   useColorMode,

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import knex from "../database/connection";
+import {generateUniqueId}from '../utils/generateUniqueId'
 
 class userController {
 	async create(req: Request, response: Response) {
@@ -8,8 +9,10 @@ class userController {
     let filename
     req.file ? ({filename}=req.file) : filename = 'perfil-padrao.png'
 
-    const user = { name, username, password, bio ,photo:filename};
-		const data = await knex("users").insert(user);
+    const id = generateUniqueId()
+
+    const user = { id, name, username, password, bio ,photo:filename};
+		await knex("users").insert(user);
 		return response.json({ user });
 	}
 

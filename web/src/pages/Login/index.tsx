@@ -25,8 +25,10 @@ export default function Login() {
 
 	async function handleLogin(e: FormEvent) {
 		e.preventDefault();
+		
 
 		const response = await api.post("session", { username, password });
+		
 		console.log(response.data);
 	}
 

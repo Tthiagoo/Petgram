@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Heading,
   Grid,
@@ -10,9 +9,9 @@ import {
   Image,
   useDisclosure,
 } from "@chakra-ui/core";
+
 import Input from "./Input";
 import { FaRegHeart, FaRegComments } from "react-icons/fa";
-
 
 import ModalComponent from  "./Modal"
 import ModalComments from './ModalComments'
@@ -20,6 +19,7 @@ import ModalComments from './ModalComments'
 import { ListItem } from "@chakra-ui/core";
 
 export default function Post() {
+  const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
   const { colorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -74,7 +74,7 @@ export default function Post() {
             borderRadius="15px"
           />
         </Flex>
-
+        
         <Flex
           gridArea="icons"
           w="95%"
@@ -93,7 +93,7 @@ export default function Post() {
 
           <Box marginLeft="10px">
             <FaRegComments size={28} cursor="pointer" onClick={onOpen} />
-            <ModalComponent isOpen={isOpen} onClose={onClose} size="xl" id="1">
+            <ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
               <ModalComments/>
             </ModalComponent>
           </Box>

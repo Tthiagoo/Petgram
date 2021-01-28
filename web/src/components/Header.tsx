@@ -20,13 +20,11 @@ import ModalComponent from  "./Modal"
 
 
 export default function Header() {
+	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const { colorMode } = useColorMode();
 	const LogoStyle = logo 
 	const { isOpen, onOpen, onClose } = useDisclosure();
-
 	const [isOpenSearch, setIsOpenSearch ] = useState(false)
-
-
 
 	return (
 		<Flex
@@ -80,7 +78,7 @@ export default function Header() {
 				<Box w={["18px", "25px", "30px", "35px", "20px"]}>
 					<FaSearch size="100%" onClick={onOpen} cursor="pointer"/>
 
-					<ModalComponent isOpen={isOpen} onClose={onClose} size="sm" id="1">
+					<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
 						<ModalSearch/>
 					</ModalComponent>
 				
