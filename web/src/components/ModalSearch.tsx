@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { ChangeEvent, useEffect, useState } from "react";
+import api from "../api";
 import {
 	ModalHeader,
 	ModalBody,
@@ -11,7 +11,11 @@ import ItemUser from "./ItemUser";
 import { FaSearch } from "react-icons/fa";
 
 const ModalSearch: React.FC = () => {
+	const [username, setUserName] = useState("");
 
+	useEffect(() => {
+		api.get('users')
+	}, [username]);
 	return (
 		<>
 			<ModalHeader display="flex" justifyContent="center">
@@ -26,11 +30,15 @@ const ModalSearch: React.FC = () => {
 				justifyContent="center"
 			>
 				<Input
+					value={username}
 					width="90%"
 					height="10%"
 					fontSize="1em"
 					paddingY="10px"
 					paddingLeft="35px"
+					onChange={(e: ChangeEvent<HTMLInputElement>) => {
+						setUserName(e.target.value);
+					}}
 				/>
 				<FaSearch
 					style={{

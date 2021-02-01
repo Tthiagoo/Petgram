@@ -5,12 +5,15 @@ class postController {
 
 	async create(request: Request, response: Response) {
 		const { namePost, description } = request.body;
+		const idUser = request.headers.authorization
+		const {photo} = await knex("users").where("id",idUser).select("photo").first();
+		
 		const post = {
 			namePost,
 			description,
-			user_id: request.headers.authorization,
+			user_id: idUser,
 			photoPost: request.file.filename,
-			photoUserPost:request.file.filename
+			photoUserPost:photo
 		};
 		
 		await knex("posts").insert(post);
@@ -38,11 +41,21 @@ class postController {
 		const posts = await knex("friends AS f")
 			.join("posts as p", "p.user_id", "f.friend_id")
 			.where("f.user_id", user_id)
-			.select("p.namePost", "p.user_id", "p.description", "p.photoPost",'p.id')
+			.select("p.namePost", "p.user_id", "p.description", "p.photoPost","p.photoUserPost",'p.id')
 			.limit(5)
 			.offset((page - 1) * 5);
-
-		return response.json({ posts });
+			const serializedPost = posts.map(post => { 
+				return {
+					id:post.id,
+					namePost:post.namePost,
+					user_id: post.user_id,
+					description: post.description,
+					photoPost: `http://localhost:3333/uploads/${post.photoPost}`,
+					photoUserPost:  `http://localhost:3333/uploads/${post.photoUserPost}`,
+				
+				};
+			}); 
+		return response.json(serializedPost);
 	}
 
 	async read(request: Request, response: Response) {

@@ -3,7 +3,7 @@ import ThemeSelector from "../../components/ThemeChange";
 import logo from "../../assets/logo.png";
 import logoDark from "../../assets/logoDark.png";
 import { FaDog, FaSignInAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
 	Heading,
 	Grid,
@@ -21,15 +21,25 @@ export default function Login() {
 	const LogoStyle = colorMode === "light" ? logo : logoDark;
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	// const history = useHistory();
+	
+	const history = useHistory();
 
 	async function handleLogin(e: FormEvent) {
 		e.preventDefault();
-		
 
-		const response = await api.post("session", { username, password });
-		
-		console.log(response.data);
+		try {
+			const response = await api.post("session", { username, password });
+
+			localStorage.setItem("name", response.data.name);
+			localStorage.setItem("username", response.data.username);
+			localStorage.setItem("bio", response.data.bio);
+			localStorage.setItem("id", response.data.id);
+
+			console.log(response.data);
+			history.push('/main') 
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
@@ -79,10 +89,10 @@ export default function Login() {
 					height="60px"
 					size="md"
 					value={password}
-					onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+					onChange={(e: ChangeEvent<HTMLInputElement>) =>
+						setPassword(e.target.value)
 					}
 				/>
-				
 
 				<Link to="/main" style={{ width: "100%", display: "flex" }}>
 					<Button
