@@ -10,11 +10,24 @@ import Input from "./Input";
 import ItemUser from "./ItemUser";
 import { FaSearch } from "react-icons/fa";
 
+interface DataUser {
+	id:Number,
+	name: String;
+	username: String;
+}
+
 const ModalSearch: React.FC = () => {
 	const [username, setUserName] = useState("");
+	const [page, setPage] = useState(1);
+	const [users, setUsers] = useState([]);
 
 	useEffect(() => {
-		api.get('users')
+		if (username) {
+			api.get(`users/${username}/?page=${page}`).then((response) => {
+				setUsers(response.data.users);
+				console.log(response.data.users);
+			});
+		}
 	}, [username]);
 	return (
 		<>
@@ -49,14 +62,9 @@ const ModalSearch: React.FC = () => {
 					}}
 				/>
 				<Flex maxHeight="21em" overflowY="auto" width="100%" flexDirection="column">
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
-					<ItemUser />
+					{users.map((user:DataUser,index) => (
+						<ItemUser key={index} name={user.name} userName={user.username} />
+					))}
 				</Flex>
 			</ModalBody>
 		</>

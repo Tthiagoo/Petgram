@@ -2,9 +2,12 @@ import React from "react";
 
 import { Flex, Image, Stack, Text, useColorMode } from "@chakra-ui/core";
 
+interface User{
+name:String,
+userName:String
+}
 
-
-export default function ItemUser() {
+const ItemUser : React.FC <User> = ({name,userName}) => {
 	const { colorMode } = useColorMode();
 	
 	return (
@@ -25,12 +28,13 @@ export default function ItemUser() {
 
 			<Stack spacing={1} padding={2} marginTop="5px">
 				<Text fontSize={["xl", "sm", "lg", "base"]} fontWeight="bold">
-					Thiaguitoo
+				{userName}
 				</Text>
-				<Text fontSize={["xs", "xl", "sm"]}>Thiago Pereira Araujo Silva</Text>
+				<Text fontSize={["xs", "xl", "sm"]}>{name}</Text>
 			</Stack>
 
 	
 		</Flex>
 	);
-}
+};
+export default ItemUser

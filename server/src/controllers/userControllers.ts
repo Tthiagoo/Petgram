@@ -17,8 +17,9 @@ class userController {
 	}
 
 	async index(request: Request, response: Response) {
-    let { username, page } = request.body;
-    
+    let { username} = request.params
+    let { page } = request.query  as any
+
     const users = await knex("users")
     .where("username", "like", `%${username}%`)
     .select("*")
@@ -31,12 +32,11 @@ class userController {
 
 	async read(request: Request, response: Response) {
 		const {username} = request.params;
-
 		const user = await knex("posts AS p")
 			.join("users AS u", "u.id", "p.user_id")
       .where("u.username", username).select().first();
       
-      response.json({user})
+      response.json(user)
   }
   async update(request: Request, response: Response) {
     const {id} = request.params
