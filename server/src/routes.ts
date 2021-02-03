@@ -22,7 +22,7 @@ const CommentController = new commentController()
 
 routes.post('/register',upload.single('photo'), UserController.create)
 routes.get('/users/:username',UserController.index)
-routes.get('/user/:username',UserController.read)
+routes.get('/user/:id',UserController.read)
 routes.put('/update/:id',upload.single('photo'),UserController.update)
 routes.delete('/user',UserController.delete)
 

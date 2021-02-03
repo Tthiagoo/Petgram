@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Grid,
@@ -12,11 +12,21 @@ import {
 } from "@chakra-ui/core";
 
 import { Link } from "react-router-dom";
-
+import api from "../../api";
 import Header from "../../components/Header";
 
 export default function Profile() {
   const { colorMode } = useColorMode();
+  const [, setstate] = useState('')
+  const id = localStorage.getItem("id")
+
+  
+  useEffect(() => {
+    api.get(`user/${id}`).then(response =>{
+      const {serializedUserInfo} = response.data
+      console.log(serializedUserInfo)
+    })
+  }, [])
 
   return (
     <Flex
@@ -72,7 +82,7 @@ export default function Profile() {
             >
               <Flex w="100%" h="20%" alignItems="center" marginBottom="5px">
                 <Heading fontSize={["1.6rem", "2.4rem"]} marginRight="7px">
-                  UserName
+                  {id}
                 </Heading>
                 <Box>
                   <Link to="">
@@ -111,7 +121,7 @@ export default function Profile() {
                   <Heading as="h5" fontSize={["1.2rem", "1.6rem"]}>
                     103
                   </Heading>
-                  <Text fontSize={["0.8rem", "1.2rem"]}>Amigos</Text>
+                  <Text fontSize={["0.8rem", "1.2rem"]}>Seguidores</Text>
                 </Flex>
               </Flex>
             </Flex>

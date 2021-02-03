@@ -11,24 +11,45 @@ import ItemUser from "./ItemUser";
 import { FaSearch } from "react-icons/fa";
 
 interface DataUser {
-	id:Number,
+	id: Number;
 	name: String;
 	username: String;
+	photo: string;
 }
 
 const ModalSearch: React.FC = () => {
 	const [username, setUserName] = useState("");
 	const [page, setPage] = useState(1);
 	const [users, setUsers] = useState([]);
+	//const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		getUsers();
+		//console.log(document.documentElement.scrollTop)
+	}, [username, page]);
+
+	function getUsers() {
 		if (username) {
 			api.get(`users/${username}/?page=${page}`).then((response) => {
-				setUsers(response.data.users);
-				console.log(response.data.users);
+				setUsers(response.data);
+				console.log(page);
+				console.log(response.data);
+				//	setLoading(false);
+				//console.log(loading)
 			});
 		}
+	}
+
+	useEffect(() => {
+		document.addEventListener("scroll", handleScroll);
+		console.log("foi ate o final");
 	}, [username]);
+
+	function handleScroll() {
+		console.log("foi no scroll");
+		setPage(page + 1);
+	}
+
 	return (
 		<>
 			<ModalHeader display="flex" justifyContent="center">
@@ -56,14 +77,19 @@ const ModalSearch: React.FC = () => {
 				<FaSearch
 					style={{
 						position: "relative",
-						left: "28px",
+						left: "30px",
 						bottom: "28px",
 						alignSelf: "end",
 					}}
 				/>
 				<Flex maxHeight="21em" overflowY="auto" width="100%" flexDirection="column">
-					{users.map((user:DataUser,index) => (
-						<ItemUser key={index} name={user.name} userName={user.username} />
+					{users.map((user: DataUser, index) => (
+						<ItemUser
+							key={index}
+							name={user.name}
+							userName={user.username}
+							photo={user.photo}
+						/>
 					))}
 				</Flex>
 			</ModalBody>
