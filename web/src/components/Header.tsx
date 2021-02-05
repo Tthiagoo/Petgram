@@ -26,6 +26,7 @@ export default function Header() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [isOpenSearch, setIsOpenSearch ] = useState(false)
 
+	
 	return (
 		<Flex
 			gridArea="logo"

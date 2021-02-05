@@ -1,4 +1,4 @@
-import React from "react";
+import React,{createContext}from "react";
 
 import {Grid,Flex,useColorMode} from "@chakra-ui/core";
 
@@ -8,8 +8,11 @@ import Post from "../../components/Post";
 import Header from "../../components/Header";
 
 
+
+
 export default function Main() {
 	const { colorMode } = useColorMode();
+
 	
 	
 	return (
