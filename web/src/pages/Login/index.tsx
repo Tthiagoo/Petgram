@@ -34,6 +34,7 @@ export default function Login() {
 			localStorage.setItem("username", response.data.username);
 			localStorage.setItem("bio", response.data.bio);
 			localStorage.setItem("id", response.data.id);
+			localStorage.setItem("photo", response.data.photo);
 
 			console.log(response.data);
 			history.push('/main') 
