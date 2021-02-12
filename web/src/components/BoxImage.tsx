@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 
 interface PostInfo {
   id: Number;
@@ -14,9 +14,11 @@ const BoxImage: React.FC<PostInfo> = ({ id, photo }) => {
       maxHeight={["120px", "200px", "320px", "340"]}
       h={["120px", "200px", "320px", "340"]}
       id={`${id}`}
-      backgroundImage={photo}
+      borderRadius="10px"
+      backgroundImage={`url(${photo})`}
       backgroundSize="cover"
     >
+    
     </Box>
   );
 };

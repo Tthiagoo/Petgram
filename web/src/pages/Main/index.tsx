@@ -1,20 +1,37 @@
-import React,{createContext}from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-import {Grid,Flex,useColorMode} from "@chakra-ui/core";
+import { Grid, Flex, useColorMode } from "@chakra-ui/core";
 
 import { List } from "@chakra-ui/core";
 
 import Post from "../../components/Post";
 import Header from "../../components/Header";
 
+import api from "../../api";
 
-
+interface PostInfo {
+	namePost: String;
+	user_id: String;
+	description: String;
+	photoPost: string;
+	photoUserPost: string;
+}
 
 export default function Main() {
 	const { colorMode } = useColorMode();
+	const id = localStorage.getItem("id");
+	const [posts, setPosts] = useState<PostInfo[]>([]);
+	const [page, setPage] = useState(1);
 
-	
-	
+	useEffect(() => {
+		async function getPhotos() {
+			await api.get(`post/${id}/?page=${page}`).then((response) => {
+				setPosts(response.data)
+			});
+		}
+		getPhotos();
+	}, []);
+
 	return (
 		<Flex
 			height="100vh"
@@ -34,7 +51,7 @@ export default function Main() {
 				templateRows={["1fr 92%"]}
 				gridTemplateAreas={["'logo' 'feed'"]}
 			>
-				<Header/>
+				<Header />
 
 				<List
 					display="flex"
@@ -48,9 +65,16 @@ export default function Main() {
 					gridArea="feed"
 				>
 					
-					<Post />
-					<Post/>
-
+					{posts.map((post, index) => (
+						<Post
+							key={index}
+							namePost={post.namePost}
+							description={post.description}
+							user_id={post.user_id}
+							photoPost={post.photoPost}
+							photoUserPost={post.photoUserPost}
+						/>
+					))}
 				</List>
 			</Grid>
 		</Flex>

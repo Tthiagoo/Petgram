@@ -36,7 +36,8 @@ class postController {
 	}
 
 	async index(request: Request, response: Response) {
-		const { user_id, page } = request.body;
+		const { user_id } = request.params
+		let { page } = request.query as any;
 
 		const posts = await knex("friends AS f")
 			.join("posts as p", "p.user_id", "f.friend_id")

@@ -30,7 +30,7 @@ routes.post('/session',SessionController.create)
 
 routes.post('/post',upload.single('photoPost'),PostController.create)
 routes.delete('/post/:id',PostController.delete)
-routes.get('/post',PostController.index)
+routes.get('/post/:user_id',PostController.index)
 routes.get('/user/:username/posts/:id',PostController.read)
 
 routes.post('/user/:idRecipient',FriendRequestController.create)
