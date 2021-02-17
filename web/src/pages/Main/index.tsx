@@ -26,7 +26,7 @@ export default function Main() {
 	useEffect(() => {
 		async function getPhotos() {
 			await api.get(`post/${id}/?page=${page}`).then((response) => {
-				setPosts(response.data)
+				setPosts(response.data);
 			});
 		}
 		getPhotos();
@@ -37,6 +37,7 @@ export default function Main() {
 			height="100vh"
 			alignItems="center"
 			justifyContent="center"
+			
 			backgroundImage={
 				colorMode === "light"
 					? "linear-gradient(to left bottom, #a6bbcd, #aecbd2, #c0d8d5, #d6e4da, #edf0e5);"
@@ -52,30 +53,39 @@ export default function Main() {
 				gridTemplateAreas={["'logo' 'feed'"]}
 			>
 				<Header />
-
-				<List
-					display="flex"
+				<Grid
+					gridArea="feed"
+					templateRows="1fr"
+					templateColumns={["1fr", "1fr", "1fr", "1fr 40%", "1fr 30%"]}
+					gridTemplateAreas={["posts", "posts", "posts", "'posts' 'info'"]}
 					width="100%"
 					height="100%"
-					maxHeight="100%"
-					overflowX="hidden"
-					overflowY="scroll"
-					flexDirection="column"
-					alignItems="center"
-					gridArea="feed"
 				>
-					
-					{posts.map((post, index) => (
-						<Post
-							key={index}
-							namePost={post.namePost}
-							description={post.description}
-							user_id={post.user_id}
-							photoPost={post.photoPost}
-							photoUserPost={post.photoUserPost}
-						/>
-					))}
-				</List>
+					<List
+						display="flex"
+						width="100%"
+						height="100%"
+						maxHeight="100%"
+						overflowX="hidden"
+						overflowY="scroll"
+						flexDirection="column"
+						alignItems="center"
+						gridArea="posts"
+						style={{ WebkitScrollSnapType: "none" }}
+						
+					>
+						{posts.map((post, index) => (
+							<Post
+								key={index}
+								namePost={post.namePost}
+								description={post.description}
+								user_id={post.user_id}
+								photoPost={post.photoPost}
+								photoUserPost={post.photoUserPost}
+							/>
+						))}
+					</List>
+				</Grid>
 			</Grid>
 		</Flex>
 	);
