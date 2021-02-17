@@ -17,6 +17,8 @@ const BoxImage: React.FC<PostInfo> = ({ id, photo }) => {
       borderRadius="10px"
       backgroundImage={`url(${photo})`}
       backgroundSize="cover"
+      cursor="pointer"
+      
     >
     
     </Box>

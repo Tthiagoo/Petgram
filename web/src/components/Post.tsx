@@ -46,14 +46,15 @@ const Post: React.FC<PostInfo> = ({
 
 	return (
 		<ListItem
-			width={["93%", "70%", "68%", "60%", "54%"]}
+			width={["93%", "80%", "90%", "85%","55%"]}
 			marginTop="10px"
 			height="auto"
 			marginBottom="5px"
+		
 		>
 			<Grid
 				height="auto"
-				borderRadius="20px"
+				borderRadius="10px"
 				width="100%"
 				templateColumns={["1fr"]}
 				backgroundColor={colorMode === "light" ? "#dae7f1" : "blue.600"}
@@ -63,10 +64,11 @@ const Post: React.FC<PostInfo> = ({
 					alignItems="center"
 					flexDirection="row"
 					w="100%"
-					h="100%"
+					h="90%"
 					gridArea="header"
 					padding="5px"
 					marginTop="15px"
+				
 				>
 					<Image
 						borderRadius={["100px"]}
@@ -84,14 +86,15 @@ const Post: React.FC<PostInfo> = ({
 					marginTop="15px"
 					gridArea="photo"
 					width="100%"
-					height={["20em", "30em", "35em"]}
+					height={["20em", "30em", "25em"]}
 					justifyContent="center"
+				
 				>
 					<Image
-						width={["95%", "95%", "90%", "85%", "80%"]}
+						width={["95%", "95%", "90%", "95%"]}
 						height="100%"
 						src={photoPost}
-						borderRadius="15px"
+						borderRadius="10px"
             backgroundSize="cover"
 					/>
 				</Flex>
@@ -176,8 +179,8 @@ const Post: React.FC<PostInfo> = ({
 				<Input
 					display={["none", "flex"]}
 					marginTop="10px"
-					borderBottomLeftRadius="20px"
-					borderBottomRightRadius="20px"
+					borderBottomLeftRadius="10px"
+					borderBottomRightRadius="10px"
 					borderTopRightRadius="0px"
 					borderTopLeftRadius="0px"
 					placeholder="Adicionar comentario"
