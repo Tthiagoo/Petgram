@@ -1,6 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
 
-import { Grid, Flex, useColorMode, Box } from "@chakra-ui/core";
+import {
+	Grid,
+	Flex,
+	useColorMode,
+	Box,
+	Image,
+	Stack,
+	Text,
+} from "@chakra-ui/core";
 
 import { List } from "@chakra-ui/core";
 
@@ -52,6 +60,7 @@ export default function Main() {
 				gridTemplateAreas={["'logo' 'feed'"]}
 			>
 				<Header />
+				
 				<Grid
 					gridArea="feed"
 					templateRows="1fr"
@@ -66,9 +75,8 @@ export default function Main() {
 						display="flex"
 						width="100%"
 						height="auto"
-					
 						flexDirection="column"
-						alignItems={["center","center","center","flex-end"]}
+						alignItems={["center", "center", "center", "flex-end"]}
 						gridArea="posts"
 						style={{ WebkitScrollSnapType: "none" }}
 					>
@@ -83,23 +91,44 @@ export default function Main() {
 							/>
 						))}
 					</List>
-					
+
 					<Flex
-					display={["none","none","none","flex"]}
+						display={["none", "none", "none", "flex"]}
 						width="100%"
 						height="100%"
 						justifyContent="start"
-						
 					>
-						<Box
-						
+						<Flex
 							width="30%"
-							height="30%"
-							border="1px solid yellow"
+							height="20%"
+							backgroundColor="rgba(255, 255, 255, 0.1)"
 							position="fixed"
 							marginTop="20px"
 							marginLeft="10px"
-						></Box>
+							borderRadius="10px"
+							boxShadow="5px 5px 15px 5px rgba(0,0,0,0.40)"
+							alignItems="center"
+							flexDirection="column"
+						>
+							<Flex
+								marginTop="15px"
+								width="90%"
+								height="30%"
+								border="1px solid blue"
+								alignItems="center"
+								flexDirection="row"
+							>
+								<Image rounded="full" size="60px" backgroundColor="white" />
+								<Stack spacing={1} padding={3}>
+									<Text fontSize={["sm","md"]} fontWeight="bold">
+										Tthiagoo
+									</Text>
+									<Text fontSize={["sm","md"]}>
+										Thiago Pereira Araujo Silva
+									</Text>
+								</Stack>
+							</Flex>
+						</Flex>
 					</Flex>
 				</Grid>
 			</Grid>
