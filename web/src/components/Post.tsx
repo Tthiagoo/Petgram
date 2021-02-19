@@ -46,7 +46,7 @@ const Post: React.FC<PostInfo> = ({
 
 	return (
 		<ListItem
-			width={["93%", "80%", "90%", "85%","55%"]}
+			width={["93%", "80%", "90%", "85%","65%"]}
 			marginTop="10px"
 			height="auto"
 			marginBottom="5px"
@@ -75,7 +75,7 @@ const Post: React.FC<PostInfo> = ({
 						size={["30px", "45px"]}
 						marginLeft="5px"
 						src={photoUserPost}
-            backgroundSize="cover"
+            objectFit="cover"
 					/>
 					<Heading as="h5" size="sm" marginLeft="10px" cursor="pointer" onClick={handleProfile}>
 						{namePost}
@@ -95,7 +95,8 @@ const Post: React.FC<PostInfo> = ({
 						height="100%"
 						src={photoPost}
 						borderRadius="10px"
-            backgroundSize="cover"
+            objectFit="cover"
+
 					/>
 				</Flex>
 

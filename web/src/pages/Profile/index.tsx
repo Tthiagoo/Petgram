@@ -30,7 +30,7 @@ interface UserInfo {
 export default function Profile() {
 	const [photos, setPhotos] = useState<UserInfo[]>([]);
 	const [countPhoto, setCountPhoto] = useState(0);
-  const [countFollowers, setCountFollowers] = useState(0)
+  //const [countFollowers, setCountFollowers] = useState(0)
 	const { colorMode } = useColorMode();
 
 	const username = localStorage.getItem("username");
