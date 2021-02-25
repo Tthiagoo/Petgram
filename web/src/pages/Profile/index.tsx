@@ -49,7 +49,7 @@ export default function Profile() {
 			});
 		}
 		getUserData();
-	}, []);
+	},[]);
 
 	useEffect(() => {
 		setCountPhoto(photos.length);

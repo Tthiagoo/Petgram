@@ -86,12 +86,12 @@ const Post: React.FC<PostInfo> = ({
 					marginTop="15px"
 					gridArea="photo"
 					width="100%"
-					height={["20em", "30em", "25em"]}
+					height={["20em", "30em", "30em"]}
 					justifyContent="center"
 				
 				>
 					<Image
-						width={["95%", "95%", "90%", "95%"]}
+						width={["95%", "95%", "90%", "95%","95%"]}
 						height="100%"
 						src={photoPost}
 						borderRadius="10px"

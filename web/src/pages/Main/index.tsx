@@ -106,7 +106,7 @@ export default function Main() {
 							marginTop="20px"
 							marginLeft="10px"
 							borderRadius="10px"
-							boxShadow="5px 5px 15px 5px rgba(0,0,0,0.40)"
+							boxShadow="5px 5px 15px 5px rgba(0,0,0,0.15)"
 							alignItems="center"
 							flexDirection="column"
 						>
