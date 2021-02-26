@@ -18,13 +18,17 @@ interface DataUser {
 }
 
 const ModalSearch: React.FC = () => {
+	const id = localStorage.getItem("id");
+
 	const [username, setUserName] = useState("");
 	const [page, setPage] = useState(1);
 	const [users, setUsers] = useState([]);
+	const [checkUser,setChekUser] = useState(false)
 	//const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		getUsers();
+		checkFollower();
 		//console.log(document.documentElement.scrollTop)
 	}, [username, page]);
 
@@ -32,10 +36,20 @@ const ModalSearch: React.FC = () => {
 		if (username) {
 			api.get(`users/${username}/?page=${page}`).then((response) => {
 				setUsers(response.data);
-				console.log(page);
-				console.log(response.data);
+				//console.log(page);
+				//console.log(response.data);
 				//	setLoading(false);
 				//console.log(loading)
+			});
+		}
+	}
+	function checkFollower() {
+		if (username) {
+			users.forEach(async (user: DataUser) => {
+			
+				await api.get(`/friends/${id}/${user.id}`).then((response) => {
+					console.log(response.data);
+				});
 			});
 		}
 	}
@@ -89,6 +103,7 @@ const ModalSearch: React.FC = () => {
 							name={user.name}
 							userName={user.username}
 							photo={user.photo}
+							IdFollow={user.id}
 						/>
 					))}
 				</Flex>
