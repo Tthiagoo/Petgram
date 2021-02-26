@@ -189,7 +189,7 @@ export default function Profile() {
 					paddingTop="15px"
 				>
 					{photos.map((user, index) => (
-						<BoxImage key={index} id={user.postId} photo={user.photoPost} />
+						<BoxImage key={index} idPhoto={user.postId} photo={user.photoPost} />
 					))}
 				</Grid>
 			</Flex>

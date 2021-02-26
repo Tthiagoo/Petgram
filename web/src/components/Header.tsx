@@ -7,7 +7,7 @@ import {
 	useDisclosure,
 
 } from "@chakra-ui/core";
-import { FaUser, FaHome, FaCameraRetro, FaSearch } from "react-icons/fa";
+import { FaUser, FaHome, FaCameraRetro, FaSearch,  } from "react-icons/fa";
 
 import ThemeSelector from "./ThemeChange";
 
