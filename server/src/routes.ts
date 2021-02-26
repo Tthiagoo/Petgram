@@ -39,6 +39,7 @@ routes.get('/friendrequest',FriendRequestController.index)
 
 routes.post('/friends',FriendController.create)
 routes.get('/friends',FriendController.index)
+routes.get('/friends/:user_id/:friend_id',FriendController.read)
 routes.delete('/friends',FriendController.delete)
 
 routes.post('/comment',upload.single('photoComment'),CommentController.create)
