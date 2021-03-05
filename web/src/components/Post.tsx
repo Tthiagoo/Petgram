@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	Heading,
 	Grid,
@@ -8,16 +8,20 @@ import {
 	Box,
 	Image,
 	useDisclosure,
+	Textarea,
+	Button,
 } from "@chakra-ui/core";
 
-import Input from "./Input";
-import { FaRegHeart, FaRegComments } from "react-icons/fa";
+import api from  '../api'
+
+//import Input from "./Input";
+import { FaRegHeart, FaRegComments, FaRegPaperPlane } from "react-icons/fa";
 
 import ModalComponent from "./Modal";
 import ModalComments from "./ModalComments";
 
 import { ListItem } from "@chakra-ui/core";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface PostInfo {
 	namePost: String;
@@ -34,23 +38,30 @@ const Post: React.FC<PostInfo> = ({
 	photoPost,
 	photoUserPost,
 }) => {
-  const history = useHistory();
+	/*const history = useHistory();
 
-  function handleProfile(){
-    history.push('/profile')
-  }
+	function handleProfile() {
+		history.push("/profile");
+	}*/
 
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const { colorMode } = useColorMode();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
+	useEffect(() => {
+		async function getComments(){
+			const response = await api.get('/')
+		}
+
+		getComments()
+	}, [])
+
 	return (
 		<ListItem
-			width={["93%", "80%", "90%", "85%","65%"]}
+			width={["93%", "80%", "90%", "85%", "65%"]}
 			marginTop="10px"
 			height="auto"
 			marginBottom="5px"
-		
 		>
 			<Grid
 				height="auto"
@@ -68,17 +79,16 @@ const Post: React.FC<PostInfo> = ({
 					gridArea="header"
 					padding="5px"
 					marginTop="15px"
-				
 				>
 					<Image
 						borderRadius={["100px"]}
 						size={["30px", "45px"]}
 						marginLeft="5px"
 						src={photoUserPost}
-            objectFit="cover"
+						objectFit="cover"
 					/>
-					<Heading as="h5" size="sm" marginLeft="10px" cursor="pointer" onClick={handleProfile}>
-						{namePost}
+					<Heading size="sm" marginLeft="10px" cursor="pointer">
+						<Link to={`/profile/${user_id}`}>{namePost}</Link>
 					</Heading>
 				</Flex>
 
@@ -88,15 +98,13 @@ const Post: React.FC<PostInfo> = ({
 					width="100%"
 					height={["20em", "30em", "30em"]}
 					justifyContent="center"
-				
 				>
 					<Image
-						width={["95%", "95%", "90%", "95%","95%"]}
+						width={["95%", "95%", "90%", "95%", "95%"]}
 						height="100%"
 						src={photoPost}
 						borderRadius="10px"
-            objectFit="cover"
-
+						objectFit="cover"
 					/>
 				</Flex>
 
@@ -130,7 +138,7 @@ const Post: React.FC<PostInfo> = ({
 					marginBottom="10px"
 				>
 					<Text>
-						<Heading as="h5" size="sm" marginRight="10px" width="auto">
+						<Heading size="sm" marginRight="10px" width="auto">
 							{namePost}
 						</Heading>
 						{description}
@@ -148,9 +156,10 @@ const Post: React.FC<PostInfo> = ({
 					paddingTop="10px"
 					flexDirection="column"
 					marginTop="10px"
+					border="1px solid red"
 				>
 					<Text marginBottom="10px">
-						<Heading as="h6" size="sm" marginRight="10px" width="auto">
+						<Heading size="sm" marginRight="10px" width="auto">
 							UserName
 						</Heading>
 						teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
@@ -162,7 +171,7 @@ const Post: React.FC<PostInfo> = ({
 						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve t
 					</Text>
 					<Text>
-						<Heading as="h6" size="sm" marginRight="10px" width="auto">
+						<Heading size="sm" marginRight="10px" width="auto">
 							UserName
 						</Heading>
 						teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
@@ -177,16 +186,21 @@ const Post: React.FC<PostInfo> = ({
 						Ver todos os 53 comentarios
 					</Text>
 				</Flex>
-				<Input
-					display={["none", "flex"]}
-					marginTop="10px"
-					borderBottomLeftRadius="10px"
-					borderBottomRightRadius="10px"
-					borderTopRightRadius="0px"
-					borderTopLeftRadius="0px"
-					placeholder="Adicionar comentario"
-					padding="25px"
-				/>
+				<Flex position="relative" justifyContent="flex-end">
+					<Textarea
+						display={["none", "flex"]}
+						marginTop="10px"
+						borderBottomLeftRadius="10px"
+						borderBottomRightRadius="10px"
+						borderTopRightRadius="0px"
+						borderTopLeftRadius="0px"
+						placeholder="Adicionar comentario"
+						padding="13px 55px 13px 13px"
+					/>
+					<Button position="absolute" variant="outline" top="43%" right="3%">
+						<FaRegPaperPlane />
+					</Button>
+				</Flex>
 			</Grid>
 		</ListItem>
 	);
