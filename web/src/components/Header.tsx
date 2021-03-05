@@ -26,6 +26,8 @@ export default function Header() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [isOpenSearch, setIsOpenSearch ] = useState(false)
 
+	const id = localStorage.getItem("id");
+
 	
 	return (
 		<Flex
@@ -59,7 +61,7 @@ export default function Header() {
 			
 			>
 				<Box marginRight="15px" w={["18px", "25px", "30px", "35px", "20px"]}>
-					<Link to="/profile" style={{ width: "100%", display: "flex" }}>
+					<Link to={`/profile/${id}`} style={{ width: "100%", display: "flex" }}>
 						<FaUser size="100%" />
 					</Link>
 				</Box>

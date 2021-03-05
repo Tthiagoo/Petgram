@@ -60,12 +60,26 @@ class postController {
 	}
 
 	async read(request: Request, response: Response) {
-		const { id,username } = request.params;
-		const Post = await knex("posts").where({
-			'namePost':username,
-			'id':id
-		}).select("*").first();
-		return response.json({ Post });
+		const { id } = request.params;
+		const posts = await knex("posts AS p")
+			.join("users AS u", "u.id", "p.user_id")
+			.where("u.id", id)
+			.select("p.id","p.user_id","p.photoPost","p.namePost","p.description","u.photo","u.bio")
+			
+			const serializedPostsInfo = posts.map((userInfo) => {
+				return {
+					postId: userInfo.id,
+					name: userInfo.namePost,
+					bio: userInfo.bio,
+					photo: `http://localhost:3333/uploads/${userInfo.photo}`,
+					photoPost:`http://localhost:3333/uploads/${userInfo.photoPost}`,
+					description:userInfo.description,
+					userId:userInfo.user_id
+					
+				};
+			});
+	
+		response.json({serializedPostsInfo});
 	}
 }
 

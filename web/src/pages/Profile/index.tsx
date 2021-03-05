@@ -11,7 +11,7 @@ import {
 	Text,
 } from "@chakra-ui/core";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import Header from "../../components/Header";
 import BoxImage from "../../components/BoxImage";
@@ -27,29 +27,50 @@ interface UserInfo {
 	postId: Number;
 }
 
+interface Params{
+	id:string;
+}
+
 export default function Profile() {
 	const [photos, setPhotos] = useState<UserInfo[]>([]);
 	const [countPhoto, setCountPhoto] = useState(0);
+
+	const [name,setName] = useState('')
+	const [bio,setBio] = useState('')
+	const [userName,setUserName] = useState('')
+	const [photo,setPhoto] = useState('')
+
+
   //const [countFollowers, setCountFollowers] = useState(0)
 	const { colorMode } = useColorMode();
 
-	const username = localStorage.getItem("username");
-	const name = localStorage.getItem("name");
-	const id = localStorage.getItem("id");
-	const bio = localStorage.getItem("bio");
-	const photo = localStorage.getItem("photo");
+	const { id } = useParams<Params>();
+
+	useEffect(()=>{
+		async function getUserPost(){
+			const response = await api.get(`user/${id}`)
+			console.log(response.data)
+			const {username,name,bio,photo} = response.data
+			setPhoto(photo)
+			setUserName(username)
+			setBio(bio)
+			setName(name)
+		}
+		getUserPost()
+	},[id])
 
 	useEffect(() => {
 		async function getUserData() {
-			await api.get(`user/${id}`).then((response) => {
-				const { serializedUserInfo } = response.data;
-				console.log(serializedUserInfo);
-				//setCountPhoto(photos.length);
-				setPhotos(serializedUserInfo);
+			await api.get(`profilePost/${id}`).then((response) => {
+				const { serializedPostsInfo } = response.data;
+				console.log(serializedPostsInfo);
+				
+				
+				setPhotos(serializedPostsInfo);
 			});
 		}
 		getUserData();
-	},[]);
+	},[id]);
 
 	useEffect(() => {
 		setCountPhoto(photos.length);
@@ -98,6 +119,7 @@ export default function Profile() {
 							<Image
 								borderRadius={["100px"]}
 								size={["120px", "160px"]}
+								backgroundSize="cover"
 								marginRight={["0px", "0px", "0px", "0px", "200px"]}
 								src={`http://localhost:3333/uploads/${photo}`}
 							/>
@@ -110,7 +132,7 @@ export default function Profile() {
 						>
 							<Flex w="100%" h="20%" alignItems="center" marginBottom="5px">
 								<Heading fontSize={["1.6rem", "2.4rem"]} marginRight="7px">
-									{username}
+									{userName}
 								</Heading>
 								<Box>
 									<Link to="">

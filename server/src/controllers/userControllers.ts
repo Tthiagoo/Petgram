@@ -42,26 +42,10 @@ class userController {
 
 	async read(request: Request, response: Response) {
 		const { id } = request.params;
-		const posts = await knex("posts AS p")
-			.join("users AS u", "u.id", "p.user_id")
-			.where("u.id", id)
-			.select("p.id","p.user_id","p.photoPost","p.namePost","p.description","u.photo","u.bio")
-			
-			const serializedUserInfo = posts.map((userInfo) => {
-				return {
-					postId: userInfo.id,
-					name: userInfo.namePost,
-					bio: userInfo.bio,
-					photo: `http://localhost:3333/uploads/${userInfo.photo}`,
-					photoPost:`http://localhost:3333/uploads/${userInfo.photoPost}`,
-					description:userInfo.description,
-					userId:userInfo.user_id
-					
-				};
-			});
-	
-		response.json({serializedUserInfo});
+		const user = await knex("users").where('id',id).first()
+		return response.json(user)
 	}
+
 	async update(request: Request, response: Response) {
 		const { id } = request.params;
 		const { name, username, password, bio } = request.body;
