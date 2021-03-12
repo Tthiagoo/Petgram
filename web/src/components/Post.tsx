@@ -1,4 +1,10 @@
-import React, { useEffect } from "react";
+import React, {
+	ChangeEvent,
+	createContext,
+	FormEvent,
+	useEffect,
+	useState,
+} from "react";
 import {
 	Heading,
 	Grid,
@@ -10,9 +16,11 @@ import {
 	useDisclosure,
 	Textarea,
 	Button,
+	InputGroup,
+	InputRightElement,
 } from "@chakra-ui/core";
 
-import api from  '../api'
+import api from "../api";
 
 //import Input from "./Input";
 import { FaRegHeart, FaRegComments, FaRegPaperPlane } from "react-icons/fa";
@@ -22,8 +30,19 @@ import ModalComments from "./ModalComments";
 
 import { ListItem } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import Input from "./Input";
+
+export interface Comment {
+	idComment: number;
+	comment: String;
+	photoComment: String;
+	post_id?: String;
+	user_id: String;
+	usernameComment: String;
+}
 
 interface PostInfo {
+	idPost: number;
 	namePost: String;
 	user_id: String;
 	description: String;
@@ -32,29 +51,67 @@ interface PostInfo {
 }
 
 const Post: React.FC<PostInfo> = ({
+	idPost,
 	namePost,
 	user_id,
 	description,
 	photoPost,
 	photoUserPost,
 }) => {
-	/*const history = useHistory();
-
-	function handleProfile() {
-		history.push("/profile");
-	}*/
-
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const { colorMode } = useColorMode();
+
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [comments, setComments] = useState<Comment[]>([]);
+	const [commentsSlice, setCommentsSlice] = useState<Comment[]>([]);
+	const [countComments, setCountComments] = useState(0);
+
+	const [comment, setComment] = useState("");
+
+	const id = localStorage.getItem("id");
+
+	const username = localStorage.getItem("username");
+
+	async function handleSubmitComment(e: FormEvent) {
+		try {
+			e.preventDefault();
+			const data = new FormData();
+
+			data.append("usernameComment", username!);
+			data.append("post_id", idPost as any);
+			data.append("comment", comment);
+			data.append("user_id", id!);
+
+			await api.post("/comment/", data, {
+				headers: {
+					Authorization: id,
+				},
+			});
+			console.log(data);
+		} catch (error) {
+			alert(error);
+		}
+	}
 
 	useEffect(() => {
-		async function getComments(){
-			const response = await api.get('/')
+		async function getComments() {
+			const response = await api.get(`/comment/${idPost}/1`);
+			console.log(response.data);
+			const { Comments } = response.data;
+			setComments(Comments);
+			//console.log(comments.slice(0,2))
 		}
 
-		getComments()
-	}, [])
+		getComments();
+	}, []);
+
+	useEffect(() => {
+		setCommentsSlice(comments.slice(0, 2));
+	}, [comments]);
+
+	useEffect(() => {
+		setCountComments(comments.length);
+	}, [comments]);
 
 	return (
 		<ListItem
@@ -64,8 +121,9 @@ const Post: React.FC<PostInfo> = ({
 			marginBottom="5px"
 		>
 			<Grid
+				
 				height="auto"
-				borderRadius="10px"
+				borderRadius="15px"
 				width="100%"
 				templateColumns={["1fr"]}
 				backgroundColor={colorMode === "light" ? "#dae7f1" : "blue.600"}
@@ -123,7 +181,7 @@ const Post: React.FC<PostInfo> = ({
 					<Box marginLeft="10px">
 						<FaRegComments size={28} cursor="pointer" onClick={onOpen} />
 						<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
-							<ModalComments />
+							<ModalComments comments={comments} />
 						</ModalComponent>
 					</Box>
 				</Flex>
@@ -156,50 +214,35 @@ const Post: React.FC<PostInfo> = ({
 					paddingTop="10px"
 					flexDirection="column"
 					marginTop="10px"
-					border="1px solid red"
 				>
-					<Text marginBottom="10px">
-						<Heading size="sm" marginRight="10px" width="auto">
-							UserName
-						</Heading>
-						teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve t
-					</Text>
-					<Text>
-						<Heading size="sm" marginRight="10px" width="auto">
-							UserName
-						</Heading>
-						teste sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve teste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve tste
-						sasasasasASsa S eefevveveve teste sasasasasASsa S eefevveveve t
-					</Text>
+					{commentsSlice.map((comment, index) => (
+						<Text marginBottom="10px" key={index}>
+							<Heading size="sm" marginRight="10px" width="auto">
+								{comment.usernameComment}
+							</Heading>
+							{comment.comment}
+						</Text>
+					))}
+
 					<Text marginTop="10px" fontWeight="bold" cursor="pointer" onClick={onOpen}>
-						Ver todos os 53 comentarios
+						{`Ver todos os ${countComments} comentarios`}
 					</Text>
 				</Flex>
-				<Flex position="relative" justifyContent="flex-end">
-					<Textarea
-						display={["none", "flex"]}
-						marginTop="10px"
-						borderBottomLeftRadius="10px"
-						borderBottomRightRadius="10px"
-						borderTopRightRadius="0px"
-						borderTopLeftRadius="0px"
-						placeholder="Adicionar comentario"
-						padding="13px 55px 13px 13px"
-					/>
-					<Button position="absolute" variant="outline" top="43%" right="3%">
-						<FaRegPaperPlane />
-					</Button>
+				<Flex
+					justifyContent="flex-end"
+					borderBottomLeftRadius="15px"
+					borderBottomRightRadius="15px"
+					alignItems="center"
+					
+				>
+					<InputGroup w="100%">
+						<Textarea focusBorderColor="none" placeholder="Enter password" w="100%" paddingRight="70px"/>
+						<InputRightElement marginTop="10px" width="4.5rem">
+							<Button h="1.75rem" size="sm">
+								teste
+							</Button>
+						</InputRightElement>
+					</InputGroup>
 				</Flex>
 			</Grid>
 		</ListItem>

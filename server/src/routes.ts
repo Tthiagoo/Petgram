@@ -44,12 +44,15 @@ routes.get('/friends',FriendController.index)
 routes.get('/friends/:user_id/:friend_id',FriendController.read)
 routes.delete('/friends',FriendController.delete)
 
-routes.post('/comment',upload.single('photoComment'),CommentController.create)
-routes.get('/comment',upload.single('photoComment'),CommentController.index)
+
+routes.post('/comment/',upload.single('photoComment'),CommentController.create)
+routes.get('/comment/:post_id/:page',upload.single('photoComment'),CommentController.index)
 routes.delete('/comment',CommentController.delete)
+
 
 routes.post('/like',LikeController.create)
 routes.get('/like',LikeController.index)
 routes.delete('/like',LikeController.delete)
+
 
 export default routes
