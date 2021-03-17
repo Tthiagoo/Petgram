@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ChangeEvent, FormEvent, useContext } from "react";
 
 import {
 	ModalHeader,
@@ -7,18 +7,46 @@ import {
 	ModalCloseButton,
 	Flex,
 	Button,
+	InputGroup,
+	InputRightElement,
 } from "@chakra-ui/core";
 import Input from "./Input";
 import { Comment } from "./Post";
 
-import CommentComponent from './Comment'
+import CommentComponent from "./Comment";
+import { FaRegPaperPlane } from "react-icons/fa";
+import api from "../api";
 
 interface ModalCommentsProps {
-	comments:Comment[]
+	idPost:number;
+	comments: Comment[];
 }
 
-const ModalComments: React.FC<ModalCommentsProps> = ({comments}) => {
+const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
 
+	const username = localStorage.getItem("username");
+	const id = localStorage.getItem("id");
+
+	async function handleSubmitComment(e: FormEvent) {
+		try {
+			e.preventDefault();
+			const data = new FormData();
+
+			data.append("usernameComment", username!);
+			data.append("post_id", idPost as any);
+			data.append("comment", '');
+			data.append("user_id", id!);
+
+			await api.post("/comment/", data, {
+				headers: {
+					Authorization: id,
+				},
+			});
+			console.log(data);
+		} catch (error) {
+			alert(error);
+		}
+	}
 	return (
 		<>
 			<ModalHeader display="flex" justifyContent="center">
@@ -39,15 +67,26 @@ const ModalComments: React.FC<ModalCommentsProps> = ({comments}) => {
 							comment={comment.comment}
 							user_id={comment.user_id}
 							photoComment={comment.photoComment}
-              idComment={comment.idComment}
-              usernameComment={comment.usernameComment}
+							idComment={comment.idComment}
+							usernameComment={comment.usernameComment}
 						/>
 					))}
 				</Flex>
 			</ModalBody>
 			<ModalFooter display="flex" justifyContent="center">
-				<Input placeholder="Escreva seu comentario" />
-				<Button marginLeft="10px">Enviar</Button>
+				<InputGroup w="100%">
+					<Input
+						focusBorderColor="none"
+						placeholder="Escreva seu comentario"
+						w="100%"
+						paddingRight="50px"
+					/>
+					<InputRightElement  width="3.5rem">
+						<Button h="1.75rem" size="sm">
+							<FaRegPaperPlane  onClick={handleSubmitComment}/>
+						</Button>
+					</InputRightElement>
+				</InputGroup>
 			</ModalFooter>
 		</>
 	);

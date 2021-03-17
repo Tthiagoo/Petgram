@@ -1,10 +1,4 @@
-import React, {
-	ChangeEvent,
-	createContext,
-	FormEvent,
-	useEffect,
-	useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
 	Heading,
 	Grid,
@@ -30,15 +24,15 @@ import ModalComments from "./ModalComments";
 
 import { ListItem } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
-import Input from "./Input";
+
 
 export interface Comment {
 	idComment: number;
-	comment: String;
-	photoComment: String;
-	post_id?: String;
-	user_id: String;
-	usernameComment: String;
+	comment: string;
+	photoComment: string;
+	post_id?: string;
+	user_id: string;
+	usernameComment: string;
 }
 
 interface PostInfo {
@@ -65,7 +59,6 @@ const Post: React.FC<PostInfo> = ({
 	const [comments, setComments] = useState<Comment[]>([]);
 	const [commentsSlice, setCommentsSlice] = useState<Comment[]>([]);
 	const [countComments, setCountComments] = useState(0);
-
 	const [comment, setComment] = useState("");
 
 	const id = localStorage.getItem("id");
@@ -121,7 +114,6 @@ const Post: React.FC<PostInfo> = ({
 			marginBottom="5px"
 		>
 			<Grid
-				
 				height="auto"
 				borderRadius="15px"
 				width="100%"
@@ -181,7 +173,7 @@ const Post: React.FC<PostInfo> = ({
 					<Box marginLeft="10px">
 						<FaRegComments size={28} cursor="pointer" onClick={onOpen} />
 						<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
-							<ModalComments comments={comments} />
+							<ModalComments comments={comments} idPost={idPost}/>
 						</ModalComponent>
 					</Box>
 				</Flex>
@@ -229,17 +221,25 @@ const Post: React.FC<PostInfo> = ({
 					</Text>
 				</Flex>
 				<Flex
+					display={["none", "none", "flex", "flex"]}
 					justifyContent="flex-end"
 					borderBottomLeftRadius="15px"
 					borderBottomRightRadius="15px"
 					alignItems="center"
-					
 				>
 					<InputGroup w="100%">
-						<Textarea focusBorderColor="none" placeholder="Enter password" w="100%" paddingRight="70px"/>
+						<Textarea
+							focusBorderColor="none"
+							placeholder="Enter password"
+							w="100%"
+							paddingRight="70px"
+							onChange={(e: ChangeEvent<HTMLInputElement>) =>
+								setComment(e.target.value)
+							}
+						/>
 						<InputRightElement marginTop="10px" width="4.5rem">
 							<Button h="1.75rem" size="sm">
-								teste
+								<FaRegPaperPlane onClick={handleSubmitComment} />
 							</Button>
 						</InputRightElement>
 					</InputGroup>
