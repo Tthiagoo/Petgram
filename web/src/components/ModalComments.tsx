@@ -18,6 +18,7 @@ import { FaRegPaperPlane } from "react-icons/fa";
 import api from "../api";
 
 interface ModalCommentsProps {
+	
 	idPost:number;
 	comments: Comment[];
 }
@@ -34,7 +35,7 @@ const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
 
 			data.append("usernameComment", username!);
 			data.append("post_id", idPost as any);
-			data.append("comment", '');
+			data.append("comment", comment);
 			data.append("user_id", id!);
 
 			await api.post("/comment/", data, {
