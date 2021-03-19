@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 import {
 	ModalHeader,
@@ -27,6 +27,7 @@ const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
 
 	const username = localStorage.getItem("username");
 	const id = localStorage.getItem("id");
+	const [comment, setComment] = useState("");
 
 	async function handleSubmitComment(e: FormEvent) {
 		try {
@@ -81,10 +82,13 @@ const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
 						placeholder="Escreva seu comentario"
 						w="100%"
 						paddingRight="50px"
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setComment(e.target.value)
+						}
 					/>
-					<InputRightElement  width="3.5rem">
-						<Button h="1.75rem" size="sm">
-							<FaRegPaperPlane  onClick={handleSubmitComment}/>
+					<InputRightElement  width="3.5rem" onClick={handleSubmitComment}>
+						<Button h="1.75rem" size="sm" >
+							<FaRegPaperPlane  />
 						</Button>
 					</InputRightElement>
 				</InputGroup>

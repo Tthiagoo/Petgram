@@ -23,11 +23,11 @@ export default function Header() {
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const { colorMode } = useColorMode();
 	const LogoStyle = logo 
+	
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [isOpenSearch, setIsOpenSearch ] = useState(false)
 
 	const id = localStorage.getItem("id");
-
 	
 	return (
 		<Flex

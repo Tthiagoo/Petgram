@@ -35,7 +35,7 @@ export interface Comment {
 	usernameComment: string;
 }
 
-interface PostInfo {
+export interface PostProps {
 	idPost: number;
 	namePost: String;
 	user_id: String;
@@ -44,7 +44,7 @@ interface PostInfo {
 	photoUserPost: string;
 }
 
-const Post: React.FC<PostInfo> = ({
+const Post: React.FC<PostProps> = ({
 	idPost,
 	namePost,
 	user_id,
@@ -112,6 +112,7 @@ const Post: React.FC<PostInfo> = ({
 			marginTop="10px"
 			height="auto"
 			marginBottom="5px"
+			listStyleType="none"
 		>
 			<Grid
 				height="auto"
@@ -172,8 +173,13 @@ const Post: React.FC<PostInfo> = ({
 
 					<Box marginLeft="10px">
 						<FaRegComments size={28} cursor="pointer" onClick={onOpen} />
+
+
 						<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
+
 							<ModalComments comments={comments} idPost={idPost}/>
+
+							
 						</ModalComponent>
 					</Box>
 				</Flex>

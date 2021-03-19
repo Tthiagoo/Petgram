@@ -64,7 +64,7 @@ class postController {
 		const posts = await knex("posts AS p")
 			.join("users AS u", "u.id", "p.user_id")
 			.where("u.id", id)
-			.select("p.id","p.user_id","p.photoPost","p.namePost","p.description","u.photo","u.bio")
+			.select("p.id","p.user_id","p.photoPost","p.namePost","p.description", "p.photoUserPost", "u.photo","u.bio")
 			
 			const serializedPostsInfo = posts.map((userInfo) => {
 				return {

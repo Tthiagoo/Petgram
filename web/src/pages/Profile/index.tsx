@@ -16,23 +16,23 @@ import api from "../../api";
 import Header from "../../components/Header";
 import BoxImage from "../../components/BoxImage";
 
-import Context from "../Main";
 
-interface UserInfo {
+import { PostProps } from "../../components/Post";
+/*interface UserInfo {
 	id: Number;
 	username: String;
 	photo: string;
 	photoPost: string;
 	bio: String;
 	postId: Number;
-}
+}*/
 
 interface Params{
 	id:string;
 }
 
 export default function Profile() {
-	const [photos, setPhotos] = useState<UserInfo[]>([]);
+	const [photos, setPhotos] = useState<PostProps[]>([]);
 	const [countPhoto, setCountPhoto] = useState(0);
 
 	const [name,setName] = useState('')
@@ -40,16 +40,17 @@ export default function Profile() {
 	const [userName,setUserName] = useState('')
 	const [photo,setPhoto] = useState('')
 
-
   //const [countFollowers, setCountFollowers] = useState(0)
 	const { colorMode } = useColorMode();
 
 	const { id } = useParams<Params>();
 
+	
+
 	useEffect(()=>{
 		async function getUserPost(){
 			const response = await api.get(`user/${id}`)
-			console.log(response.data)
+			console.log(response.data) 
 			const {username,name,bio,photo} = response.data
 			setPhoto(photo)
 			setUserName(username)
@@ -211,7 +212,14 @@ export default function Profile() {
 					paddingTop="15px"
 				>
 					{photos.map((user, index) => (
-						<BoxImage key={index} idPhoto={user.postId} photo={user.photoPost} />
+						<BoxImage 
+						key={index}	
+						description={user.description}
+						idPost={user.idPost}
+						namePost={user.namePost}
+						photoPost={user.photoPost}
+						photoUserPost={user.photoUserPost}
+						user_id={user.user_id} />
 					))}
 				</Grid>
 			</Flex>
