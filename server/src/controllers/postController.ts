@@ -23,11 +23,11 @@ class postController {
 
 	async delete(request: Request, response: Response) {
 		const { id } = request.params;
-		const userId = request.headers.authorization;
+		const user_id = request.headers.authorization;
 
 		const post = await knex("posts").where("id", id).select("user_id").first();
 
-		if (post.user_id == userId) {
+		if (post.user_id == user_id) {
 			await knex("posts").where("id", id).delete();
 			return response.status(204).send();
 		} else {
@@ -44,7 +44,8 @@ class postController {
 			.where("f.user_id", user_id)
 			.select("p.namePost", "p.user_id", "p.description", "p.photoPost","p.photoUserPost",'p.id')
 			.limit(5)
-			.offset((page - 1) * 5);
+			.offset((page - 1) * 5)
+			.orderBy('p.id','desc')
 			const serializedPost = posts.map(post => { 
 				return {
 					id:post.id,
@@ -65,21 +66,8 @@ class postController {
 			.join("users AS u", "u.id", "p.user_id")
 			.where("u.id", id)
 			.select("p.id","p.user_id","p.photoPost","p.namePost","p.description", "p.photoUserPost", "u.photo","u.bio")
-			
-			const serializedPostsInfo = posts.map((userInfo) => {
-				return {
-					postId: userInfo.id,
-					name: userInfo.namePost,
-					bio: userInfo.bio,
-					photo: `http://localhost:3333/uploads/${userInfo.photo}`,
-					photoPost:`http://localhost:3333/uploads/${userInfo.photoPost}`,
-					description:userInfo.description,
-					userId:userInfo.user_id
-					
-				};
-			});
-	
-		response.json({serializedPostsInfo});
+			.orderBy('p.id','desc')
+		response.json({posts});
 	}
 }
 

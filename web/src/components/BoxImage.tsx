@@ -13,22 +13,23 @@ import { PostProps } from "./Post";
 
 const BoxImage: React.FC<PostProps> = ({ ...props }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-
+	
+	console.log(props);
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const [mouseOver, setMouseOver] = useState(false);
 
-	const idUser = localStorage.getItem("id");
+	const user_id = localStorage.getItem("id");
 
 	async function handleDeletePhoto() {
 		try {
-			await api.delete(`post/${props.idPost}`, {
+			await api.delete(`post/${props.id}`, {
 				headers: {
-					Authorization: idUser,
+					Authorization: user_id,
 				},
 			});
 			alert("deu certo");
 		} catch (err) {
-			alert("Erro ao deletar caso, tente novamente.");
+			alert("Erro ao deletar, tente novamente.");
 		}
 	}
 
@@ -38,9 +39,9 @@ const BoxImage: React.FC<PostProps> = ({ ...props }) => {
 			w="100%"
 			maxHeight={["120px", "200px", "320px", "340"]}
 			h={["120px", "200px", "320px", "340"]}
-			id={`${props.idPost}`}
+			id={`${props.id}`}
 			borderRadius="10px"
-			backgroundImage={`url(${props.photoPost})`}
+			backgroundImage={`url(http://localhost:3333/uploads/${props.photoPost})`}
 			backgroundSize="cover"
 			cursor="pointer"
 			justifyContent="flex-end"
@@ -48,12 +49,11 @@ const BoxImage: React.FC<PostProps> = ({ ...props }) => {
 			padding="15px"
 			onMouseOver={() => setMouseOver(true)}
 			onMouseLeave={() => setMouseOver(false)}
-			
 		>
 			<ModalComponent isOpen={isOpen} onClose={onClose} size="xg" id="1">
 				<ModalShowPhoto
 					description={props.description}
-					idPost={props.idPost}
+					id={props.id}
 					namePost={props.namePost}
 					photoPost={props.photoPost}
 					photoUserPost={props.photoUserPost}
@@ -62,7 +62,7 @@ const BoxImage: React.FC<PostProps> = ({ ...props }) => {
 			</ModalComponent>
 
 			<FaRegTimesCircle
-				size={25}
+				size={28}
 				onClick={handleDeletePhoto}
 				color={mouseOver === true ? "black" : "rgba(124, 127, 118, 0)"}
 			/>

@@ -19,7 +19,7 @@ const InfoLateral: React.FC = () => {
         marginTop="15px"
         width="90%"
         height="30%"
-        border="1px solid blue"
+      
         alignItems="center"
         flexDirection="row"
       >

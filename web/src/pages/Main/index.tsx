@@ -81,7 +81,7 @@ export default function Main() {
 					>
 						{posts.map((post, index) => (
 							<Post
-								idPost={post.id}
+								id={post.id}
 								key={index}
 								namePost={post.namePost}
 								description={post.description}

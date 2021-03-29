@@ -16,7 +16,7 @@ const ModalShowPhoto: React.FC<PostProps> = ({ ...props }) => {
 			<ModalBody display="flex" border="1px solid yellow" justifyContent="center">
 				<Post
 					description={props.description}
-					idPost={props.idPost}
+					id={props.id}
 					namePost={props.namePost}
 					photoPost={props.photoPost}
           photoUserPost={props.photoUserPost}

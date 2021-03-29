@@ -16,7 +16,6 @@ import api from "../../api";
 import Header from "../../components/Header";
 import BoxImage from "../../components/BoxImage";
 
-
 import { PostProps } from "../../components/Post";
 /*interface UserInfo {
 	id: Number;
@@ -27,51 +26,47 @@ import { PostProps } from "../../components/Post";
 	postId: Number;
 }*/
 
-interface Params{
-	id:string;
+interface Params {
+	id: string;
 }
 
 export default function Profile() {
 	const [photos, setPhotos] = useState<PostProps[]>([]);
 	const [countPhoto, setCountPhoto] = useState(0);
 
-	const [name,setName] = useState('')
-	const [bio,setBio] = useState('')
-	const [userName,setUserName] = useState('')
-	const [photo,setPhoto] = useState('')
+	const [name, setName] = useState("");
+	const [bio, setBio] = useState("");
+	const [userName, setUserName] = useState("");
+	const [photo, setPhoto] = useState("");
 
-  //const [countFollowers, setCountFollowers] = useState(0)
+	//const [countFollowers, setCountFollowers] = useState(0)
 	const { colorMode } = useColorMode();
 
 	const { id } = useParams<Params>();
 
-	
-
-	useEffect(()=>{
-		async function getUserPost(){
-			const response = await api.get(`user/${id}`)
-			console.log(response.data) 
-			const {username,name,bio,photo} = response.data
-			setPhoto(photo)
-			setUserName(username)
-			setBio(bio)
-			setName(name)
+	useEffect(() => {
+		async function getUserPost() {
+			const response = await api.get(`user/${id}`);
+			console.log(response.data);
+			const { username, name, bio, photo } = response.data;
+			setPhoto(photo);
+			setUserName(username);
+			setBio(bio);
+			setName(name);
 		}
-		getUserPost()
-	},[id])
+		getUserPost();
+	}, [id]);
 
 	useEffect(() => {
 		async function getUserData() {
 			await api.get(`profilePost/${id}`).then((response) => {
-				const { serializedPostsInfo } = response.data;
-				console.log(serializedPostsInfo);
-				
-				
-				setPhotos(serializedPostsInfo);
+				const { posts } = response.data;
+				console.log(posts);
+				setPhotos(posts);
 			});
 		}
 		getUserData();
-	},[id]);
+	}, [id]);
 
 	useEffect(() => {
 		setCountPhoto(photos.length);
@@ -212,14 +207,15 @@ export default function Profile() {
 					paddingTop="15px"
 				>
 					{photos.map((user, index) => (
-						<BoxImage 
-						key={index}	
-						description={user.description}
-						idPost={user.idPost}
-						namePost={user.namePost}
-						photoPost={user.photoPost}
-						photoUserPost={user.photoUserPost}
-						user_id={user.user_id} />
+						<BoxImage
+							key={index}
+							description={user.description}
+							id={user.id}
+							namePost={user.namePost}
+							photoPost={user.photoPost}
+							photoUserPost={user.photoUserPost}
+							user_id={user.user_id}
+						/>
 					))}
 				</Grid>
 			</Flex>

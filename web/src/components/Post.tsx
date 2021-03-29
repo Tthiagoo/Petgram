@@ -25,7 +25,6 @@ import ModalComments from "./ModalComments";
 import { ListItem } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 
-
 export interface Comment {
 	idComment: number;
 	comment: string;
@@ -36,7 +35,7 @@ export interface Comment {
 }
 
 export interface PostProps {
-	idPost: number;
+	id: number;
 	namePost: String;
 	user_id: String;
 	description: String;
@@ -45,7 +44,7 @@ export interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({
-	idPost,
+	id,
 	namePost,
 	user_id,
 	description,
@@ -61,7 +60,7 @@ const Post: React.FC<PostProps> = ({
 	const [countComments, setCountComments] = useState(0);
 	const [comment, setComment] = useState("");
 
-	const id = localStorage.getItem("id");
+	const userId = localStorage.getItem("id");
 
 	const username = localStorage.getItem("username");
 
@@ -71,9 +70,9 @@ const Post: React.FC<PostProps> = ({
 			const data = new FormData();
 
 			data.append("usernameComment", username!);
-			data.append("post_id", idPost as any);
+			data.append("post_id", id as any);
 			data.append("comment", comment);
-			data.append("user_id", id!);
+			data.append("user_id", userId!);
 
 			await api.post("/comment/", data, {
 				headers: {
@@ -88,7 +87,7 @@ const Post: React.FC<PostProps> = ({
 
 	useEffect(() => {
 		async function getComments() {
-			const response = await api.get(`/comment/${idPost}/1`);
+			const response = await api.get(`/comment/${id}/1`);
 			console.log(response.data);
 			const { Comments } = response.data;
 			setComments(Comments);
@@ -173,13 +172,9 @@ const Post: React.FC<PostProps> = ({
 
 					<Box marginLeft="10px">
 						<FaRegComments size={28} cursor="pointer" onClick={onOpen} />
-
-
+						<Text style={{ fontWeight: "bold", marginLeft:'10px' }}>3</Text>
 						<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
-
-							<ModalComments comments={comments} idPost={idPost}/>
-
-							
+							<ModalComments comments={comments} idPost={id} />
 						</ModalComponent>
 					</Box>
 				</Flex>
@@ -236,7 +231,7 @@ const Post: React.FC<PostProps> = ({
 					<InputGroup w="100%">
 						<Textarea
 							focusBorderColor="none"
-							placeholder="Enter password"
+							placeholder="Envie seu comentário"
 							w="100%"
 							paddingRight="70px"
 							onChange={(e: ChangeEvent<HTMLInputElement>) =>
