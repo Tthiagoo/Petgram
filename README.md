@@ -3,7 +3,7 @@
   <img alt="MoveIt" src="https://user-images.githubusercontent.com/51219408/112017428-5e20ac00-8b0c-11eb-8c24-a35ea34704b8.png" width="50%">
 </p>
 
->Projeto com React e Typescript utilizando Design System com Chakra UI ainda em desenvolvimento
+>Projeto com React e Typescript utilizando Design System com Chakra UI ainda em desenvolvimentooooo
 
 <p align="center">
   <img alt="MoveIt" src="https://user-images.githubusercontent.com/51219408/112020458-1d766200-8b0f-11eb-90e9-cb01c89620cf.png" width="70%">
