@@ -1,42 +1,21 @@
-import React, { createContext, useEffect, useState } from "react";
-
-import {
-	Grid,
-	Flex,
-	useColorMode,
-
-} from "@chakra-ui/core";
-
+import React, { useEffect, useState } from "react";
+import { Grid, Flex, useColorMode } from "@chakra-ui/core";
 import { List } from "@chakra-ui/core";
-
 import Post from "../../components/Post";
 import Header from "../../components/Header";
-
-import api from "../../api";
+import api from "../../services/api";
 import InfoLateral from "../../components/InfoLateral";
-
-interface PostInfo {
-	id: number;
-	namePost: String;
-	user_id: String;
-	description: String;
-	photoPost: string;
-	photoUserPost: string;
-}
+import { IPostInfo } from "../../DTOs/PostDto";
+import { usePostContext } from "../../contexts/PostContext";
 
 export default function Main() {
 	const { colorMode } = useColorMode();
 	const id = localStorage.getItem("id");
-	const [posts, setPosts] = useState<PostInfo[]>([]);
+	const [posts, setPosts] = useState<IPostInfo[]>([]);
 	const [page, setPage] = useState(1);
-
+	const { fetchPosts } = usePostContext();
 	useEffect(() => {
-		async function getPhotos() {
-			await api.get(`post/${id}/?page=${page}`).then((response) => {
-				setPosts(response.data);
-			});
-		}
-		getPhotos();
+		fetchPosts();
 	}, []);
 
 	return (
@@ -63,8 +42,19 @@ export default function Main() {
 				<Grid
 					gridArea="feed"
 					templateRows="1fr"
-					templateColumns={["1fr", "1fr", "1fr", "1fr 40%", "1fr 40%"]}
-					gridTemplateAreas={["posts", "posts", "posts", "'posts' 'info'"]}
+					templateColumns={[
+						"1fr",
+						"1fr",
+						"1fr",
+						"1fr 40%",
+						"1fr 40%",
+					]}
+					gridTemplateAreas={[
+						"posts",
+						"posts",
+						"posts",
+						"'posts' 'info'",
+					]}
 					width="100%"
 					height="100%"
 					overflowX="hidden"
