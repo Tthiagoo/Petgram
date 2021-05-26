@@ -1,23 +1,25 @@
 import React from "react";
 
 import { Flex, Image, Stack, Text, useColorMode, Tag } from "@chakra-ui/core";
-import api from "../api";
+import api from "../services/api";
+import { IUserProps } from "../DTOs/UserDto";
 
-interface User {
-	name: String;
-	userName: String;
-	photo: string;
-	IdFollow: Number;
-}
-
-const ItemUser: React.FC<User> = ({ name, userName, photo, IdFollow }) => {
+const ItemUser: React.FC<IUserProps> = ({
+	name,
+	userName,
+	photo,
+	IdFollow,
+}) => {
 	const { colorMode } = useColorMode();
 
 	const id = localStorage.getItem("id");
 
 	async function Follow() {
 		try {
-			const response = await api.post("/friends", { user_id:id, friend_id:IdFollow });
+			const response = await api.post("/friends", {
+				user_id: id,
+				friend_id: IdFollow,
+			});
 			console.log(response.data);
 		} catch (error) {
 			console.log(error);
@@ -27,7 +29,9 @@ const ItemUser: React.FC<User> = ({ name, userName, photo, IdFollow }) => {
 	return (
 		<Flex
 			flexDirection="row"
-			borderTop={colorMode === "light" ? "0.5px solid grey" : "1px solid white"}
+			borderTop={
+				colorMode === "light" ? "0.5px solid grey" : "1px solid white"
+			}
 			width="100%"
 			height="5em"
 		>
@@ -47,7 +51,14 @@ const ItemUser: React.FC<User> = ({ name, userName, photo, IdFollow }) => {
 				<Text fontSize={["xs", "xl", "sm"]}>{name}</Text>
 			</Stack>
 
-			<Tag display="flex" alignSelf="center" onClick={Follow} cursor="pointer" size="sm" h="30%">
+			<Tag
+				display="flex"
+				alignSelf="center"
+				onClick={Follow}
+				cursor="pointer"
+				size="sm"
+				h="30%"
+			>
 				Seguir
 			</Tag>
 		</Flex>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, useDisclosure } from "@chakra-ui/core";
 import { FaRegTimesCircle } from "react-icons/fa";
-import api from "../api";
+import api from "../services/api";
 import ModalComponent from "./Modal";
 import ModalShowPhoto from "./ModalShowPhoto";
 
@@ -13,7 +13,7 @@ import { PostProps } from "./Post";
 
 const BoxImage: React.FC<PostProps> = ({ ...props }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	
+
 	console.log(props);
 	const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
 	const [mouseOver, setMouseOver] = useState(false);

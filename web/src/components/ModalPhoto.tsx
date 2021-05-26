@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
 
-import api from "../api";
+import api from "../services/api";
 
 import {
 	ModalHeader,

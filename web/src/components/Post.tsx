@@ -14,7 +14,7 @@ import {
 	InputRightElement,
 } from "@chakra-ui/core";
 
-import api from "../api";
+import api from "../services/api";
 
 //import Input from "./Input";
 import { FaRegHeart, FaRegComments, FaRegPaperPlane } from "react-icons/fa";
@@ -24,26 +24,9 @@ import ModalComments from "./ModalComments";
 
 import { ListItem } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import { IComment, IPostInfo } from "../DTOs/PostDto";
 
-export interface Comment {
-	idComment: number;
-	comment: string;
-	photoComment: string;
-	post_id?: string;
-	user_id: string;
-	usernameComment: string;
-}
-
-export interface PostProps {
-	id: number;
-	namePost: String;
-	user_id: String;
-	description: String;
-	photoPost: string;
-	photoUserPost: string;
-}
-
-const Post: React.FC<PostProps> = ({
+const Post: React.FC<IPostInfo> = ({
 	id,
 	namePost,
 	user_id,
@@ -55,8 +38,8 @@ const Post: React.FC<PostProps> = ({
 	const { colorMode } = useColorMode();
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [comments, setComments] = useState<Comment[]>([]);
-	const [commentsSlice, setCommentsSlice] = useState<Comment[]>([]);
+	const [comments, setComments] = useState<IComment[]>([]);
+	const [commentsSlice, setCommentsSlice] = useState<IComment[]>([]);
 	const [countComments, setCountComments] = useState(0);
 	const [comment, setComment] = useState("");
 
@@ -119,7 +102,9 @@ const Post: React.FC<PostProps> = ({
 				width="100%"
 				templateColumns={["1fr"]}
 				backgroundColor={colorMode === "light" ? "#dae7f1" : "blue.600"}
-				gridTemplateAreas={["'header' 'photo' 'icons' 'description' 'comments' "]}
+				gridTemplateAreas={[
+					"'header' 'photo' 'icons' 'description' 'comments' ",
+				]}
 			>
 				<Flex
 					alignItems="center"
@@ -166,14 +151,31 @@ const Post: React.FC<PostProps> = ({
 					paddingLeft="18px"
 				>
 					<Box>
-						<FaRegHeart size={28} style={{ marginRight: "10px" }} cursor="pointer" />
+						<FaRegHeart
+							size={28}
+							style={{ marginRight: "10px" }}
+							cursor="pointer"
+						/>
 						<Text style={{ fontWeight: "bold" }}>210</Text>
 					</Box>
 
 					<Box marginLeft="10px">
-						<FaRegComments size={28} cursor="pointer" onClick={onOpen} />
-						<Text style={{ fontWeight: "bold", marginLeft:'10px' }}>3</Text>
-						<ModalComponent isOpen={isOpen} onClose={onClose} size={sizes} id="1">
+						<FaRegComments
+							size={28}
+							cursor="pointer"
+							onClick={onOpen}
+						/>
+						<Text
+							style={{ fontWeight: "bold", marginLeft: "10px" }}
+						>
+							3
+						</Text>
+						<ModalComponent
+							isOpen={isOpen}
+							onClose={onClose}
+							size={sizes}
+							id="1"
+						>
 							<ModalComments comments={comments} idPost={id} />
 						</ModalComponent>
 					</Box>
@@ -217,7 +219,12 @@ const Post: React.FC<PostProps> = ({
 						</Text>
 					))}
 
-					<Text marginTop="10px" fontWeight="bold" cursor="pointer" onClick={onOpen}>
+					<Text
+						marginTop="10px"
+						fontWeight="bold"
+						cursor="pointer"
+						onClick={onOpen}
+					>
 						{`Ver todos os ${countComments} comentarios`}
 					</Text>
 				</Flex>
@@ -240,7 +247,9 @@ const Post: React.FC<PostProps> = ({
 						/>
 						<InputRightElement marginTop="10px" width="4.5rem">
 							<Button h="1.75rem" size="sm">
-								<FaRegPaperPlane onClick={handleSubmitComment} />
+								<FaRegPaperPlane
+									onClick={handleSubmitComment}
+								/>
 							</Button>
 						</InputRightElement>
 					</InputGroup>

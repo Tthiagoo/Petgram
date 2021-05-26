@@ -15,16 +15,14 @@ import { Comment } from "./Post";
 
 import CommentComponent from "./Comment";
 import { FaRegPaperPlane } from "react-icons/fa";
-import api from "../api";
+import api from "../services/api";
 
 interface ModalCommentsProps {
-	
-	idPost:number;
+	idPost: number;
 	comments: Comment[];
 }
 
 const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
-
 	const username = localStorage.getItem("username");
 	const id = localStorage.getItem("id");
 	const [comment, setComment] = useState("");
@@ -86,9 +84,12 @@ const ModalComments: React.FC<ModalCommentsProps> = ({ comments, idPost }) => {
 							setComment(e.target.value)
 						}
 					/>
-					<InputRightElement  width="3.5rem" onClick={handleSubmitComment}>
-						<Button h="1.75rem" size="sm" >
-							<FaRegPaperPlane  />
+					<InputRightElement
+						width="3.5rem"
+						onClick={handleSubmitComment}
+					>
+						<Button h="1.75rem" size="sm">
+							<FaRegPaperPlane />
 						</Button>
 					</InputRightElement>
 				</InputGroup>

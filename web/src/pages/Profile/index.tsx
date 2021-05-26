@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/core";
 
 import { Link, useParams } from "react-router-dom";
-import api from "../../api";
+import api from "../../services/api";
 import Header from "../../components/Header";
 import BoxImage from "../../components/BoxImage";
 
@@ -110,13 +110,25 @@ export default function Profile() {
 							h="100%"
 							w={["40%", "50%", "50%", "50%", "70%"]}
 							alignItems="center"
-							justifyContent={["center", "center", "center", "center", "flex-end"]}
+							justifyContent={[
+								"center",
+								"center",
+								"center",
+								"center",
+								"flex-end",
+							]}
 						>
 							<Image
 								borderRadius={["100px"]}
 								size={["120px", "160px"]}
 								backgroundSize="cover"
-								marginRight={["0px", "0px", "0px", "0px", "200px"]}
+								marginRight={[
+									"0px",
+									"0px",
+									"0px",
+									"0px",
+									"200px",
+								]}
 								src={`http://localhost:3333/uploads/${photo}`}
 							/>
 						</Flex>
@@ -126,8 +138,16 @@ export default function Profile() {
 							flexDirection="column"
 							justifyContent="center"
 						>
-							<Flex w="100%" h="20%" alignItems="center" marginBottom="5px">
-								<Heading fontSize={["1.6rem", "2.4rem"]} marginRight="7px">
+							<Flex
+								w="100%"
+								h="20%"
+								alignItems="center"
+								marginBottom="5px"
+							>
+								<Heading
+									fontSize={["1.6rem", "2.4rem"]}
+									marginRight="7px"
+								>
 									{userName}
 								</Heading>
 								<Box>
@@ -145,7 +165,12 @@ export default function Profile() {
 								</Box>
 							</Flex>
 
-							<Flex w="100%" h="27%" justifyContent="start" marginTop="10px">
+							<Flex
+								w="100%"
+								h="27%"
+								justifyContent="start"
+								marginTop="10px"
+							>
 								<Flex
 									h="100%"
 									width="auto"
@@ -153,16 +178,31 @@ export default function Profile() {
 									marginRight="20px"
 									flexDirection="column"
 								>
-									<Heading as="h5" fontSize={["1.2rem", "1.6rem"]}>
+									<Heading
+										as="h5"
+										fontSize={["1.2rem", "1.6rem"]}
+									>
 										{countPhoto}
 									</Heading>
-									<Text fontSize={["0.8rem", "1.2rem"]}>Publicações</Text>
+									<Text fontSize={["0.8rem", "1.2rem"]}>
+										Publicações
+									</Text>
 								</Flex>
-								<Flex h="100%" width="auto" alignItems="center" flexDirection="column">
-									<Heading as="h5" fontSize={["1.2rem", "1.6rem"]}>
+								<Flex
+									h="100%"
+									width="auto"
+									alignItems="center"
+									flexDirection="column"
+								>
+									<Heading
+										as="h5"
+										fontSize={["1.2rem", "1.6rem"]}
+									>
 										103
 									</Heading>
-									<Text fontSize={["0.8rem", "1.2rem"]}>Seguidores</Text>
+									<Text fontSize={["0.8rem", "1.2rem"]}>
+										Seguidores
+									</Text>
 								</Flex>
 							</Flex>
 						</Flex>
@@ -182,7 +222,9 @@ export default function Profile() {
 						w={["100%", "100%", "100%", "100%", "70%"]}
 						maxWidth={["100%", "100%", "100%", "100%", "70%"]}
 					>
-						<Heading fontSize={["1.0rem", "1.4rem"]}>{name}</Heading>
+						<Heading fontSize={["1.0rem", "1.4rem"]}>
+							{name}
+						</Heading>
 						<Text
 							fontSize={["0.8rem", "1.4rem", "1.0rem"]}
 							paddingX={["0px,0px,15px"]}

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import api from "../api";
+import api from "../services/api";
 import {
 	ModalHeader,
 	ModalBody,
@@ -23,7 +23,7 @@ const ModalSearch: React.FC = () => {
 	const [username, setUserName] = useState("");
 	const [page, setPage] = useState(1);
 	const [users, setUsers] = useState([]);
-	const [checkUser,setChekUser] = useState(false)
+	const [checkUser, setChekUser] = useState(false);
 	//const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -46,7 +46,6 @@ const ModalSearch: React.FC = () => {
 	function checkFollower() {
 		if (username) {
 			users.forEach(async (user: DataUser) => {
-			
 				await api.get(`/friends/${id}/${user.id}`).then((response) => {
 					console.log(response.data);
 				});
@@ -96,7 +95,12 @@ const ModalSearch: React.FC = () => {
 						alignSelf: "end",
 					}}
 				/>
-				<Flex maxHeight="21em" overflowY="auto" width="100%" flexDirection="column">
+				<Flex
+					maxHeight="21em"
+					overflowY="auto"
+					width="100%"
+					flexDirection="column"
+				>
 					{users.map((user: DataUser, index) => (
 						<ItemUser
 							key={index}

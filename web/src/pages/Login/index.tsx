@@ -14,14 +14,14 @@ import {
 } from "@chakra-ui/core";
 
 import Input from "../../components/Input";
-import api from "../../api";
+import api from "../../services/api";
 
 export default function Login() {
 	const { colorMode } = useColorMode();
 	const LogoStyle = colorMode === "light" ? logo : logoDark;
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	
+
 	const history = useHistory();
 
 	async function handleLogin(e: FormEvent) {
@@ -29,7 +29,6 @@ export default function Login() {
 
 		try {
 			const response = await api.post("session", { username, password });
-
 			localStorage.setItem("name", response.data.name);
 			localStorage.setItem("username", response.data.username);
 			localStorage.setItem("bio", response.data.bio);
@@ -37,7 +36,7 @@ export default function Login() {
 			localStorage.setItem("photo", response.data.photo);
 
 			console.log(response.data);
-			history.push('/main') 
+			history.push("/main");
 		} catch (error) {
 			console.log(error);
 		}
@@ -61,7 +60,9 @@ export default function Login() {
 			<ThemeSelector aria-label="" gridArea="form" />
 
 			<Flex
-				backgroundColor={colorMode === "light" ? "blue.200" : "blue.600"}
+				backgroundColor={
+					colorMode === "light" ? "blue.200" : "blue.600"
+				}
 				width={["80%", "70%", "85%", "90%", "30em"]}
 				gridArea="form"
 				height={["80%", "50%", "60%", "45%", "30em"]}
@@ -101,7 +102,9 @@ export default function Login() {
 						width="100%"
 						height={20}
 						fontSize={30}
-						backgroundColor={colorMode === "light" ? "#0878b9" : "#075988"}
+						backgroundColor={
+							colorMode === "light" ? "#0878b9" : "#075988"
+						}
 						color="white"
 						onClick={handleLogin}
 					>
@@ -118,7 +121,10 @@ export default function Login() {
 					width="100%"
 					color="white"
 				>
-					<Link to="/register" style={{ width: "100%", display: "flex" }}>
+					<Link
+						to="/register"
+						style={{ width: "100%", display: "flex" }}
+					>
 						<FaSignInAlt
 							size={25}
 							color="#e9e6e6"
